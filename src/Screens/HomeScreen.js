@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 
 function HomeScreen() {
-    const stackNavigationHome = createStackNavigator({Home, HomeDetail});
+<button></button>
     
 };
 
