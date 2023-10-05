@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
-import ProfileScreen from "./src/Screens/ProfileScreen";
+import ProfileScreen from "./src/screens/ProfileScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import "react-native-gesture-handler";
-import HomeScreen from "./src/Screens/HomeScreen";
-import GalleryScreen from "./src/Screens/GalleryScreen";
+import HomeScreen from "./src/screens/HomeScreen";
+import GalleryScreen from "./src/screens/GalleryScreen";
 
 const Tab = createBottomTabNavigator();
 
