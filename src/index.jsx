@@ -12,10 +12,4 @@ if (ReactNative.Platform.OS == "android") {
   });
 }
 
-export default function App() {
-    return (
-        <NavigationContainer>
-                      
-        </NavigationContainer>
-    );
-}
+export default index;

@@ -23,6 +23,7 @@ export default function App() {
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="home" color={color} size={size} />
             ),
+            //headerShown: false
           }}
         />
         <Tab.Screen
@@ -36,6 +37,7 @@ export default function App() {
                 size={size}
               />
             ),
+            //headerShown: false
           }}
         />
         <Tab.Screen
@@ -49,6 +51,7 @@ export default function App() {
                 size={size}
               />
             ),
+            //headerShown: false
           }}
         />
       </Tab.Navigator>
