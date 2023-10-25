@@ -52,17 +52,18 @@ function HomeScreen() {
               // title={title}
               // subtitle={body}
               // right={RightContent}
-              title="Card title"
+              title={body}
               subtitle="subtitle"
-              right={() => (
+              right={(props) => (
                 <IconButton
+                {...props}
                   icon={isSelected ? 'heart' : 'heart-outline'}
                   onPress={() => setIsSelected(!isSelected)}
                 />
               )}
             />
             <Card.Content>
-              <Text>Lorem ipsum dolor sit amet</Text>
+              <Text>{body}</Text>
               <Text>body</Text>
             </Card.Content>
             {/* <Card.Actions>
