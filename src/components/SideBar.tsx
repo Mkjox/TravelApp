@@ -53,11 +53,31 @@ const AppBar = ({ navigation }: Props) => {
   ]);
 
   const renderDefaultOptions = () => (
-    <View style={styles.row}>
-      <TextComponent>Left icon</TextComponent>
-      <Switch value={showLeftIcon} onValueChange={setShowLeftIcon}></Switch>
-    </View>
+    <>
+      <View style={styles.row}>
+        <TextComponent>Left icon</TextComponent>
+        <Switch value={showLeftIcon} onValueChange={setShowLeftIcon}></Switch>
+      </View>
+      <View style={styles.row}>
+        <TextComponent>Search Icon</TextComponent>
+        <Switch value={showSearchIcon} onValueChange={setShowSearchIcon} />
+      </View>
+      <View style={styles.row}>
+        <TextComponent>More Icon</TextComponent>
+        <Switch value={showMoreIcon} onValueChange={setShowMoreIcon} />
+      </View>
+      <View style={styles.row}>
+        <TextComponent>Exact Dark Theme</TextComponent>
+        <Switch value={showExactTheme} onValueChange={setShowExactTheme} />
+      </View>
+    </>
   );
+
+    return (
+      <>
+        
+      </>
+    );
 };
 
 const styles = StyleSheet.create({
