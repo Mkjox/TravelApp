@@ -11,7 +11,7 @@ import Fontawesome from '@expo/vector-icons/FontAwesome5';
 
 const isAndroid = Platform.OS === 'android';
 
-function ProfileScreen ({navigation}: RootTabScreenProps<"ProfileScreen">){
+function ProfileScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.userInfoScreen}>
@@ -64,28 +64,28 @@ function ProfileScreen ({navigation}: RootTabScreenProps<"ProfileScreen">){
             </View>
 
               <View style={styles.menuWrapper}>
-                <TouchableRipple onPress={() => navigation.navigate('Liked')}>
+                <TouchableRipple>
                 <View style={styles.menuItem}>
                   <Fontawesome name='heart' color='#FF6347' size={25}/>
                   <Text style={styles.menuItemText}>Liked</Text>
                   </View>
                 </TouchableRipple>
 
-                <TouchableRipple onPress={() => navigation.navigate('HomeScreen')}>
+                <TouchableRipple>
                   <View style={styles.menuItem}>
                     <Materialicon name='share' color='#FF6347' size={25} />
                     <Text style={styles.menuItemText}>Recommend it to your friend</Text>
                   </View>
                 </TouchableRipple>
                 
-                <TouchableRipple onPress={() => navigation.navigate('Donate')}>
+                <TouchableRipple>
                   <View style={styles.menuItem}>
                     <Fontawesome name='donate' color='#FF6347' size={25} />
                     <Text style={styles.menuItemText}>Donate</Text>
                   </View>
                 </TouchableRipple>
 
-                <TouchableRipple onPress={() => navigation.navigate('Settings')}>
+                <TouchableRipple>
                   <View style={styles.menuItem}>
                     <Materialicon name='settings' color='#FF6347' size={25}/>
                     <Text style={styles.menuItemText}>Settings</Text>

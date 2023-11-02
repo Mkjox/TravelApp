@@ -13,6 +13,8 @@ import {
 // import { ScrollView } from "react-native-gesture-handler";
 import { ScrollView } from "react-native";
 import axios from "axios";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Feather from "@expo/vector-icons/Feather";
 
 function HomeScreen() {
   const [isLoading, setLoading] = useState(true);
@@ -24,9 +26,9 @@ function HomeScreen() {
   React.useEffect(() => {
     axios
       .get("https://jsonplaceholder.typicode.com/posts")
-      .then(function (response) {
-        console.log(response);
-      })
+      // .then(function (response) {
+      //   console.log(response, "Veri getirildi");
+      // })
       .then((json) => {
         // setData(json.data);
         setTitle(title);
@@ -42,35 +44,42 @@ function HomeScreen() {
   return (
     <View style={styles.container}>
       <ScrollView>
-        {isLoading ? (
-          <ActivityIndicator />
-        ) : (
-          <Card style={styles.card}>
-            {/* <Card.Cover source={=require={}}/> */}
-            <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
-            <Card.Title
-              // title={title}
-              // subtitle={body}
-              // right={RightContent}
-              title={body}
-              subtitle="subtitle"
-              right={(props) => (
-                <IconButton
-                {...props}
-                  icon={isSelected ? 'heart' : 'heart-outline'}
-                  onPress={() => setIsSelected(!isSelected)}
-                />
-              )}
-            />
-            <Card.Content>
-              <Text>{body}</Text>
-              <Text>body</Text>
-            </Card.Content>
-            {/* <Card.Actions>
+        <SafeAreaView>
+          <View style={styles.menuWrapper}>
+            <Feather name="menu" size={32}>
+            </Feather>
+          </View>
+
+          {isLoading ? (
+            <ActivityIndicator />
+          ) : (
+            <Card style={styles.card}>
+              {/* <Card.Cover source={=require={}}/> */}
+              <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
+              <Card.Title
+                // title={title}
+                // subtitle={body}
+                // right={RightContent}
+                title={body}
+                subtitle="subtitle"
+                right={(props) => (
+                  <IconButton
+                    {...props}
+                    icon={isSelected ? "heart" : "heart-outline"}
+                    onPress={() => setIsSelected(!isSelected)}
+                  />
+                )}
+              />
+              <Card.Content>
+                <Text>{body}</Text>
+                <Text>body</Text>
+              </Card.Content>
+              {/* <Card.Actions>
               <Button onPress={() => {}}>Cancel</Button>
             </Card.Actions> */}
-          </Card>
-        )}
+            </Card>
+          )}
+        </SafeAreaView>
       </ScrollView>
     </View>
   );
@@ -86,6 +95,13 @@ const styles = StyleSheet.create({
   card: {
     marginTop: 10,
     width: 350, // Don't forget to change this
+  },
+  menuWrapper: {
+    marginHorizontal: 20,
+    marginTop: 20,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 });
 

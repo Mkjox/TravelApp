@@ -6,8 +6,11 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import "react-native-gesture-handler";
 import HomeScreen from "./src/screens/HomeScreen";
 import GalleryScreen from "./src/screens/GalleryScreen";
+import { createStackNavigator } from "@react-navigation/stack";
+import Appbar from './src/components/Appbar';
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
@@ -23,7 +26,7 @@ export default function App() {
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="home" color={color} size={size} />
             ),
-            //headerShown: false
+            headerShown: false
           }}
         />
         <Tab.Screen
@@ -55,6 +58,11 @@ export default function App() {
           }}
         />
       </Tab.Navigator>
+
+      {/* <Stack.Navigator>
+        { <Stack.Screen name="Appbar" component={Appbar}  options={{headerShown: false}} /> }
+      </Stack.Navigator> */}
+
     </NavigationContainer>
   );
 }
