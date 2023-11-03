@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "strict": true
+    "strict": true,
+    "resolveJsonModule": true
   },
-  "extends": "expo/tsconfig.base",
+  "extends": "expo/tsconfig.base"
 }

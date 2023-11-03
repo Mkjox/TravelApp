@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity, ImageBackground } from "react-native";
 import Post from "../components/Post";
 import {
   Chip,
@@ -10,74 +10,50 @@ import {
   ActivityIndicator,
   Button,
 } from "react-native-paper";
-// import { ScrollView } from "react-native-gesture-handler";
 import { ScrollView } from "react-native";
-import axios from "axios";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
+import { FlatList } from "react-native-gesture-handler";
+import PostData from '../assets/data/PostData';
 
-function HomeScreen() {
-  const [isLoading, setLoading] = useState(true);
-  // const [data, setData] = useState([]);
-  const [title, setTitle] = useState([]);
-  const [body, setBody] = useState([]);
-  const [id, setId] = useState([]);
+// const PostData = require('../assets/data/PostData');
 
-  React.useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/posts")
-      // .then(function (response) {
-      //   console.log(response, "Veri getirildi");
-      // })
-      .then((json) => {
-        // setData(json.data);
-        setTitle(title);
-        setBody(body);
-        setId(id);
-      })
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
-  }, []);
+const HomeScreen = ({route, navigation}) => {
+   const renderPostItem = ({item}) =>{
+    return (
+      <TouchableOpacity onPress={() => navigation.navigate('PostDetails', {item: item})}>
+        <ImageBackground source={{uri:'https://picsum.photos/700'}}
+          style={[styles.postItem /*, {
+            marginTop: item.id === id = 20 : 0,
+          },*/
+        ]}
+        imageStyle = {styles.postItemImage}>
+          
+        </ImageBackground>
+      </TouchableOpacity>
+    );
+  };
 
-  const [isSelected, setIsSelected] = React.useState(false);
+  // const [data, setData] = useState("");
 
+  // const [isSelected, setIsSelected] = React.useState(false);
+  
   return (
     <View style={styles.container}>
       <ScrollView>
         <SafeAreaView>
           <View style={styles.menuWrapper}>
-            <Feather name="menu" size={32}>
-            </Feather>
+            <Feather name="menu" size={32}></Feather>
           </View>
 
           {isLoading ? (
             <ActivityIndicator />
           ) : (
-            <Card style={styles.card}>
-              {/* <Card.Cover source={=require={}}/> */}
-              <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
-              <Card.Title
-                // title={title}
-                // subtitle={body}
-                // right={RightContent}
-                title={body}
-                subtitle="subtitle"
-                right={(props) => (
-                  <IconButton
-                    {...props}
-                    icon={isSelected ? "heart" : "heart-outline"}
-                    onPress={() => setIsSelected(!isSelected)}
-                  />
-                )}
-              />
-              <Card.Content>
-                <Text>{body}</Text>
-                <Text>body</Text>
-              </Card.Content>
-              {/* <Card.Actions>
-              <Button onPress={() => {}}>Cancel</Button>
-            </Card.Actions> */}
-            </Card>
+            <View style = {styles.postWrapper}>
+              <View style = {styles.postItemsWrapper}>
+                <FlatList data={body}  />
+              </View>
+            </View>
           )}
         </SafeAreaView>
       </ScrollView>
@@ -103,6 +79,26 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
+  postWrapper: {
+    marginHorizontal: 5,
+    marginTop: 10
+  },
+  postItemsWrapper: {
+    paddingVertical: 20,
+    marginBottom: 10,
+    marginLeft: 5
+  },
+  postItem: {
+    width: 320,
+    height: 120,
+    justifyContent: 'flex-end',
+    marginRight: 20,
+    marginHorizontal: 10,
+    marginVertical: 10
+  },
+  postItemImage: {
+    borderRadius: 20
+  }
 });
 
 export default HomeScreen;
