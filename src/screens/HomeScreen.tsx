@@ -15,13 +15,46 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
 import { FlatList } from "react-native-gesture-handler";
 import PostData from '../assets/data/PostData';
+import axios from "axios";
+import { createStackNavigator } from "@react-navigation/stack";
 
 // const PostData = require('../assets/data/PostData');
 
-const HomeScreen = ({route, navigation}) => {
-   const renderPostItem = ({item}) =>{
+const [isLoading, setLoading] = useState(true);
+// const [data, setData] = useState([]);
+const [title, setTitle] = useState();
+const [body, setBody] = useState();
+const [id, setId] = useState();
+const [userId, setUserId] = useState();
+
+React.useEffect(() => {
+  axios
+    .get("https://jsonplaceholder.typicode.com/posts", {
+      params: {
+        postId: id,
+        postTitle: title,
+        userId: userId,
+        body: body,
+      },
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .then((json) => {
+      // setData(json.data);
+      setTitle(title);
+      setBody(body);
+      setId(id);
+      setUserId(userId);
+    })
+    .catch((error) => console.error(error))
+    .finally(() => setLoading(false));
+}, []);
+
+const HomeScreen = () => {
+   const renderPostItem = () =>{
     return (
-      <TouchableOpacity onPress={() => navigation.navigate('PostDetails', {item: item})}>
+      <TouchableOpacity/* onPress={() => navigation.navigate('PostDetails', {item: null})}*/>
         <ImageBackground source={{uri:'https://picsum.photos/700'}}
           style={[styles.postItem /*, {
             marginTop: item.id === id = 20 : 0,
@@ -51,7 +84,7 @@ const HomeScreen = ({route, navigation}) => {
           ) : (
             <View style = {styles.postWrapper}>
               <View style = {styles.postItemsWrapper}>
-                <FlatList data={body}  />
+                <FlatList data={body} renderItem={undefined} getItem={body} pinchGestureEnabled={true}/>
               </View>
             </View>
           )}
