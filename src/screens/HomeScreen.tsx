@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { StyleSheet, View, Text, TouchableOpacity, ImageBackground } from "react-native";
+import {
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  ImageBackground,
+  Text,
+} from "react-native";
 import Post from "../components/Post";
 import {
   Chip,
@@ -9,90 +15,97 @@ import {
   IconButton,
   ActivityIndicator,
   Button,
+  
 } from "react-native-paper";
 import { ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
 import { FlatList } from "react-native-gesture-handler";
-import PostData from '../assets/data/PostData';
+import PostData from "../assets/data/PostData";
 import axios from "axios";
 import { createStackNavigator } from "@react-navigation/stack";
+import { get } from "jquery";
+import { parseJsonText } from "typescript";
 
 // const PostData = require('../assets/data/PostData');
-
-const [isLoading, setLoading] = useState(true);
-// const [data, setData] = useState([]);
-const [title, setTitle] = useState();
-const [body, setBody] = useState();
-const [id, setId] = useState();
-const [userId, setUserId] = useState();
-
-React.useEffect(() => {
-  axios
-    .get("https://jsonplaceholder.typicode.com/posts", {
-      params: {
-        postId: id,
-        postTitle: title,
-        userId: userId,
-        body: body,
-      },
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .then((json) => {
-      // setData(json.data);
-      setTitle(title);
-      setBody(body);
-      setId(id);
-      setUserId(userId);
-    })
-    .catch((error) => console.error(error))
-    .finally(() => setLoading(false));
-}, []);
+const url = "https://jsonplaceholder.typicode.com/posts";
 
 const HomeScreen = () => {
-   const renderPostItem = () =>{
-    return (
-      <TouchableOpacity/* onPress={() => navigation.navigate('PostDetails', {item: null})}*/>
-        <ImageBackground source={{uri:'https://picsum.photos/700'}}
-          style={[styles.postItem /*, {
-            marginTop: item.id === id = 20 : 0,
-          },*/
-        ]}
-        imageStyle = {styles.postItemImage}>
-          
-        </ImageBackground>
-      </TouchableOpacity>
-    );
-  };
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+  const [userId, setUserId] = useState();
+  const [id, setId] = useState();
+  const [title, setTitle] = useState();
+  const [body, setBody] = useState();
+
+  useEffect(() => {
+    fetch(url)
+      .then((resp) => resp.json())
+      .then((json) => {
+        setData(json);
+        setTitle(title);
+        setBody(body);
+        setId(id);
+        setUserId(userId);
+      })
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
+  }, []);
+
+  //const renderPostItem = () =>{
+  //<TouchableOpacity/* onPress={() => navigation.navigate('PostDetails', {item: null})}*/>
+
+  //</TouchableOpacity>
+
+  //};
 
   // const [data, setData] = useState("");
 
   // const [isSelected, setIsSelected] = React.useState(false);
-  
+
   return (
     <View style={styles.container}>
-      <ScrollView>
-        <SafeAreaView>
-          <View style={styles.menuWrapper}>
-            <Feather name="menu" size={32}></Feather>
-          </View>
-
-          {isLoading ? (
-            <ActivityIndicator />
-          ) : (
-            <View style = {styles.postWrapper}>
-              <View style = {styles.postItemsWrapper}>
-                <FlatList data={body} renderItem={undefined} getItem={body} pinchGestureEnabled={true}/>
+      {isLoading ? (
+        <ActivityIndicator />
+      ) : (
+        data.flatMap((post) => {
+          return (
+            <ScrollView>
+              <SafeAreaView>
+                <View style={styles.menuWrapper}>
+                  <Feather
+                    name="menu"
+                    size={32}
+                    style={{ elevation: 5, shadowRadius: 5 }}
+                  ></Feather>
+                </View>
+              </SafeAreaView>
+              <View style={styles.postWrapper}>
+                <View style={styles.postItemsWrapper}>
+                  <Card>
+                    <ImageBackground
+                      source={{ uri: "https://picsum.photos/700" }}
+                      style={[
+                        styles.postItem /*, {
+            marginTop: item.id === id = 20 : 0,
+          },*/,
+                      ]}
+                      imageStyle={styles.postItemImage}
+                    />
+                    <Card.Content style={styles.card}>
+                      <Text /* variant="titleLarge"*/>title</Text>
+                      <Text /* variant="bodyMedium"*/>{body}</Text>
+                    </Card.Content>
+                  </Card>
+                </View>
               </View>
-            </View>
-          )}
-        </SafeAreaView>
-      </ScrollView>
+            </ScrollView>
+          );
+        })
+      )}
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -114,24 +127,24 @@ const styles = StyleSheet.create({
   },
   postWrapper: {
     marginHorizontal: 5,
-    marginTop: 10
+    marginTop: 10,
   },
   postItemsWrapper: {
     paddingVertical: 20,
     marginBottom: 10,
-    marginLeft: 5
+    marginLeft: 5,
   },
   postItem: {
     width: 320,
     height: 120,
-    justifyContent: 'flex-end',
+    justifyContent: "flex-end",
     marginRight: 20,
     marginHorizontal: 10,
-    marginVertical: 10
+    marginVertical: 10,
   },
   postItemImage: {
-    borderRadius: 20
-  }
+    borderRadius: 20,
+  },
 });
 
 export default HomeScreen;

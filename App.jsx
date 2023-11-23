@@ -54,7 +54,7 @@ export default function App() {
                 size={size}
               />
             ),
-            //headerShown: false
+            headerShown: false
           }}
         />
       </Tab.Navigator>

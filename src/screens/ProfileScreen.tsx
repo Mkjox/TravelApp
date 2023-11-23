@@ -17,9 +17,8 @@ function ProfileScreen() {
       <View style={styles.userInfoScreen}>
         <View style={{flexDirection: 'row', marginTop: 15}}>
 
-            const Avatar = {
-              <Avatar.Icon size={24} icon='folder'/>
-            };
+              <Avatar.Icon size={24} icon='folder' style={{marginRight: -5}}/>
+
 
             <View style={{marginLeft: 20}}>
               <CardTitle style={[styles.title, {
