@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ImageBackground,
   Text,
+  FlatList,
 } from "react-native";
 import Post from "../components/Post";
 import {
@@ -15,29 +16,16 @@ import {
   IconButton,
   ActivityIndicator,
   Button,
-  
 } from "react-native-paper";
 import { ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
-import { FlatList } from "react-native-gesture-handler";
-import PostData from "../assets/data/PostData";
-import axios from "axios";
 import { createStackNavigator } from "@react-navigation/stack";
-import { get } from "jquery";
-import { parseJsonText } from "typescript";
 
 // const PostData = require('../assets/data/PostData');
 const url = "https://jsonplaceholder.typicode.com/posts";
 
 const HomeScreen = () => {
-  const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
-  const [userId, setUserId] = useState();
-  const [id, setId] = useState();
-  const [title, setTitle] = useState();
-  const [body, setBody] = useState();
-
   useEffect(() => {
     fetch(url)
       .then((resp) => resp.json())
@@ -52,56 +40,62 @@ const HomeScreen = () => {
       .finally(() => setLoading(false));
   }, []);
 
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+  const [userId, setUserId] = useState();
+  const [id, setId] = useState();
+  const [title, setTitle] = useState();
+  const [body, setBody] = useState();
   //const renderPostItem = () =>{
   //<TouchableOpacity/* onPress={() => navigation.navigate('PostDetails', {item: null})}*/>
 
-  //</TouchableOpacity>
-
-  //};
-
-  // const [data, setData] = useState("");
-
   // const [isSelected, setIsSelected] = React.useState(false);
+
+  const postView = data.map((item) => {
+    <View style={styles.postWrapper}>
+      <View style={styles.postItemsWrapper}>
+        <FlatList
+          data={item}
+          key={item}
+          renderItem={({ item }) => <Text>{item.body}</Text>}
+        />
+        <Card>
+          <ImageBackground
+            source={{ uri: "https://picsum.photos/700" }}
+            style={[
+              styles.postItem /*, {
+        marginTop: item.id === id = 20 : 0,
+      },*/,
+            ]}
+            imageStyle={styles.postItemImage}
+          />
+          <Card.Content style={styles.card}>
+            <Text /* variant="titleLarge"*/>title</Text>
+            <Text /* variant="bodyMedium"*/></Text>
+          </Card.Content>
+        </Card>
+      </View>
+    </View>;
+  });
 
   return (
     <View style={styles.container}>
       {isLoading ? (
         <ActivityIndicator />
       ) : (
-        data.flatMap((post) => {
-          return (
-            <ScrollView>
-              <SafeAreaView>
-                <View style={styles.menuWrapper}>
-                  <Feather
-                    name="menu"
-                    size={32}
-                    style={{ elevation: 5, shadowRadius: 5 }}
-                  ></Feather>
-                </View>
-              </SafeAreaView>
-              <View style={styles.postWrapper}>
-                <View style={styles.postItemsWrapper}>
-                  <Card>
-                    <ImageBackground
-                      source={{ uri: "https://picsum.photos/700" }}
-                      style={[
-                        styles.postItem /*, {
-            marginTop: item.id === id = 20 : 0,
-          },*/,
-                      ]}
-                      imageStyle={styles.postItemImage}
-                    />
-                    <Card.Content style={styles.card}>
-                      <Text /* variant="titleLarge"*/>title</Text>
-                      <Text /* variant="bodyMedium"*/>{body}</Text>
-                    </Card.Content>
-                  </Card>
-                </View>
-              </View>
-            </ScrollView>
-          );
-        })
+        // <ScrollView>
+        <SafeAreaView>
+          <View style={styles.menuWrapper}>
+            <Feather
+              name="menu"
+              size={32}
+              style={{ elevation: 5, shadowRadius: 5 }}
+            ></Feather>
+          </View>
+          {postView}
+        </SafeAreaView>
+
+        // </ScrollView>
       )}
     </View>
   );
