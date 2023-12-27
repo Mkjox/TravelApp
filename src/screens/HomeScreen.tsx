@@ -51,51 +51,51 @@ const HomeScreen = () => {
 
   // const [isSelected, setIsSelected] = React.useState(false);
 
-  const postView = data.map((item) => {
-    <View style={styles.postWrapper}>
-      <View style={styles.postItemsWrapper}>
-        <FlatList
-          data={item}
-          key={item}
-          renderItem={({ item }) => <Text>{item.body}</Text>}
-        />
-        <Card>
-          <ImageBackground
-            source={{ uri: "https://picsum.photos/700" }}
-            style={[
-              styles.postItem /*, {
-        marginTop: item.id === id = 20 : 0,
-      },*/,
-            ]}
-            imageStyle={styles.postItemImage}
-          />
-          <Card.Content style={styles.card}>
-            <Text /* variant="titleLarge"*/>title</Text>
-            <Text /* variant="bodyMedium"*/></Text>
-          </Card.Content>
-        </Card>
-      </View>
-    </View>;
-  });
-
   return (
     <View style={styles.container}>
       {isLoading ? (
         <ActivityIndicator />
       ) : (
-        // <ScrollView>
-        <SafeAreaView>
-          <View style={styles.menuWrapper}>
-            <Feather
-              name="menu"
-              size={32}
-              style={{ elevation: 5, shadowRadius: 5 }}
-            ></Feather>
-          </View>
-          {postView}
-        </SafeAreaView>
+        data.map((data, id) => {
+          return (
+            // <ScrollView>
+            <SafeAreaView>
+              <View style={styles.menuWrapper}>
+                <Feather
+                  name="menu"
+                  size={32}
+                  style={{ elevation: 5, shadowRadius: 5 }}
+                ></Feather>
+              </View>
+              <View style={styles.postWrapper}>
+                <View style={styles.postItemsWrapper}>
+                  <FlatList
+                    data={data}
+                    key={id}
+                    renderItem={({ item }) => <Text>{item}</Text>}
+                  />
+                  <Card>
+                    <ImageBackground
+                      source={{ uri: "https://picsum.photos/700" }}
+                      style={[
+                        styles.postItem /*, {
+            marginTop: item.id === id = 20 : 0,
+          },*/,
+                      ]}
+                      imageStyle={styles.postItemImage}
+                    />
+                    <Card.Content style={styles.card}>
+                      <Text /* variant="titleLarge"*/>title</Text>
+                      <Text /* variant="bodyMedium"*/></Text>
+                    </Card.Content>
+                  </Card>
+                </View>
+              </View>
+            </SafeAreaView>
 
-        // </ScrollView>
+            // </ScrollView>
+          );
+        })
       )}
     </View>
   );
