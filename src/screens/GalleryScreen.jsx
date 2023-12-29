@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { Button } from "react-native-paper";
 import Feather from "@expo/vector-icons/Feather";
-import galleryData from "../assets/data/GalleryData";
+import galleryData from "../assets/data/galleryData";
 import Entypo from "@expo/vector-icons/Entypo";
 
 const GalleryScreen = ({ route, navigation }) => {
