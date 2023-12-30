@@ -19,13 +19,13 @@ const GalleryScreen = ({ route, navigation }) => {
       <TouchableOpacity
         onPress={() => navigation.navigate("Details", { item: item })}>
         <ImageBackground
-          source={item.image}
+          source={{ uri: 'https://picsum.photos/400' }}
           style={[
             styles.galleryItem,
             {
               marginTop: item.id === "0" ? 20 : 0,
             },
-          ]}
+          ]} 
           imageStyle={styles.galleryItemImage}
         >
           <Text style={styles.galleryItemText}>{item.title}</Text>

@@ -8,7 +8,7 @@ import {
   Text,
   FlatList,
 } from "react-native";
-import Post from "../components/Post";
+import Post from "../components/PostDetails";
 import {
   Chip,
   useTheme,
@@ -17,10 +17,8 @@ import {
   ActivityIndicator,
   Button,
 } from "react-native-paper";
-import { ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
-import { createStackNavigator } from "@react-navigation/stack";
 
 // const PostData = require('../assets/data/PostData');
 const url = "https://jsonplaceholder.typicode.com/posts";
@@ -51,54 +49,59 @@ const HomeScreen = () => {
 
   // const [isSelected, setIsSelected] = React.useState(false);
 
-  return (
-    <View style={styles.container}>
-      {isLoading ? (
-        <ActivityIndicator />
-      ) : (
-        data.map((data, id) => {
-          return (
-            // <ScrollView>
-            <SafeAreaView>
-              <View style={styles.menuWrapper}>
-                <Feather
-                  name="menu"
-                  size={32}
-                  style={{ elevation: 5, shadowRadius: 5 }}
-                ></Feather>
-              </View>
-              <View style={styles.postWrapper}>
-                <View style={styles.postItemsWrapper}>
-                  <FlatList
-                    data={data}
-                    key={id}
-                    renderItem={({ item }) => <Text>{item}</Text>}
-                  />
-                  <Card>
-                    <ImageBackground
-                      source={{ uri: "https://picsum.photos/700" }}
-                      style={[
-                        styles.postItem /*, {
+  const HomeScreen = ({ route, navigation }) => {
+    const renderHomeItem = ({ item }) => {
+      return (
+        <View style={styles.container}>
+          {isLoading ? (
+            <ActivityIndicator />
+          ) : (
+            data.map((data, id) => {
+              return (
+                // <ScrollView>
+                <SafeAreaView>
+                  <View style={styles.menuWrapper}>
+                    <Feather
+                      name="menu"
+                      size={32}
+                      style={{ elevation: 5, shadowRadius: 5 }}
+                    ></Feather>
+                  </View>
+                  <View style={styles.postWrapper}>
+                    <View style={styles.postItemsWrapper}>
+                      <FlatList
+                        data={url}
+                        // key={id}
+                        keyExtractor={(item) => item.id}
+                        renderItem={({ item }) => <Text>{item}</Text>}
+                      />
+                      <Card>
+                        <ImageBackground
+                          source={{ uri: "https://picsum.photos/700" }}
+                          style={[
+                            styles.postItem /*, {
             marginTop: item.id === id = 20 : 0,
           },*/,
-                      ]}
-                      imageStyle={styles.postItemImage}
-                    />
-                    <Card.Content style={styles.card}>
-                      <Text /* variant="titleLarge"*/>title</Text>
-                      <Text /* variant="bodyMedium"*/></Text>
-                    </Card.Content>
-                  </Card>
-                </View>
-              </View>
-            </SafeAreaView>
+                          ]}
+                          imageStyle={styles.postItemImage}
+                        />
+                        <Card.Content style={styles.card}>
+                          <Text /* variant="titleLarge"*/>title</Text>
+                          <Text /* variant="bodyMedium"*/></Text>
+                        </Card.Content>
+                      </Card>
+                    </View>
+                  </View>
+                </SafeAreaView>
 
-            // </ScrollView>
-          );
-        })
-      )}
-    </View>
-  );
+                // </ScrollView>
+              );
+            })
+          )}
+        </View>
+      );
+    };
+  };
 };
 
 const styles = StyleSheet.create({

@@ -8,13 +8,13 @@ import HomeScreen from "./src/screens/HomeScreen";
 import GalleryScreen from "./src/screens/GalleryScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 import Appbar from './src/components/Appbar';
+import PostDetails from "./src/components/PostDetails";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-export default function App() {
+const TabNavigator = () => {
   return (
-    <NavigationContainer>
       <Tab.Navigator
         initialRouteName="Home"
         screenOptions={{ tabBarActiveTintColor: "#e91e63" }}
@@ -40,7 +40,7 @@ export default function App() {
                 size={size}
               />
             ),
-            //headerShown: false
+            headerShown: false
           }}
         />
         <Tab.Screen
@@ -58,11 +58,24 @@ export default function App() {
           }}
         />
       </Tab.Navigator>
+  );
+};
 
-      {/* <Stack.Navigator>
-        { <Stack.Screen name="Appbar" component={Appbar}  options={{headerShown: false}} /> }
-      </Stack.Navigator> */}
-
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen 
+          name="TabNavigator"
+          component={TabNavigator}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="PostDetails"
+          component={PostDetails}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
@@ -84,3 +97,5 @@ const styles = StyleSheet.create({
     // display: 'flex'
   },
 });
+
+export default App;

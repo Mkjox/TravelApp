@@ -1,7 +1,7 @@
 import * as React from "react";
 import { StyleSheet, ScrollViewBase, View } from "react-native";
 
-function Post() {
+function PostDetails() {
   return (
     <View style={styles.container}>
       <View style={styles.postView}>
@@ -27,4 +27,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Post;
+export default PostDetails;
