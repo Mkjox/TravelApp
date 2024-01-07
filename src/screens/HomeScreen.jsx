@@ -50,7 +50,7 @@ const HomeScreen = () => {
   // const [isSelected, setIsSelected] = React.useState(false);
 
   const HomeScreen = ({ route, navigation }) => {
-    const renderHomeItem = ({ item }) => {
+    const renderPostItem = ({ item }) => {
       return (
         <View style={styles.container}>
           {isLoading ? (
@@ -58,50 +58,43 @@ const HomeScreen = () => {
           ) : (
             data.map((data, id) => {
               return (
-                <View style={styles.menuWrapper}>
-                  <Feather
-                    name="menu"
-                    size={32}
-                    style={{ elevation: 5, shadowRadius: 5 }}
-                  ></Feather>
-                </View>
+                <ScrollView>
+                  <SafeAreaView>
+                    <View style={styles.menuWrapper}>
+                      <Feather
+                        name="menu"
+                        size={32}
+                        style={{ elevation: 5, shadowRadius: 5 }}
+                      ></Feather>
+                      <ImageBackground
+                        source={{ uri: "https://picsum.photos/700" }}
+                        style={[
+                          styles.postItem,
+                          {
+                            marginTop: item.id === "0" ? 20 : 0,
+                          },
+                          ,
+                        ]}
+                        imageStyle={styles.postItemImage}
+                      />
+                    </View>
+                    <View style={styles.postWrapper}>
+                      <View style={styles.postItemsWrapper}>
+                        <FlatList
+                          data={url}
+                          // key={id}
+                          keyExtractor={(item) => item.id}
+                          renderItem={renderPostItem}
+                          alwaysBounceVertical={true}
+                          showsVerticalScrollIndicator={false}
+                        />
+                      </View>
+                    </View>
+                  </SafeAreaView>
+                </ScrollView>
               );
             })
           )}
-          return (
-          <ScrollView>
-            <SafeAreaView>
-              <View style={styles.postWrapper}>
-                <View style={styles.postItemsWrapper}>
-                  <FlatList
-                    data={url}
-                    // key={id}
-                    keyExtractor={(item) => item.id}
-                    renderItem={({ item }) => <Text>{item}</Text>}
-                  />
-                  <Card>
-                    <ImageBackground
-                      source={{ uri: "https://picsum.photos/700" }}
-                      style={[
-                        styles.postItem,
-                        {
-                          marginTop: item.id === "0" ? 20 : 0,
-                        },
-                        ,
-                      ]}
-                      imageStyle={styles.postItemImage}
-                    />
-                    <Card.Content style={styles.card}>
-                      <Text /* variant="titleLarge"*/>{item.title}</Text>
-                      <Text /* variant="bodyMedium"*/>{item.body}</Text>
-                    </Card.Content>
-                  </Card>
-                </View>
-              </View>
-            </SafeAreaView>
-            //{" "}
-          </ScrollView>
-          );
         </View>
       );
     };
