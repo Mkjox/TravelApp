@@ -7,6 +7,7 @@ import {
   ImageBackground,
   Text,
   FlatList,
+  ScrollView
 } from "react-native";
 import Post from "../components/PostDetails";
 import {
@@ -20,10 +21,9 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
 
-// const PostData = require('../assets/data/PostData');
 const url = "https://jsonplaceholder.typicode.com/posts";
 
-const HomeScreen = () => {
+const HomeScreen = ({ route, navigation }) => {
   useEffect(() => {
     fetch(url)
       .then((resp) => resp.json())
@@ -34,71 +34,60 @@ const HomeScreen = () => {
         setId(id);
         setUserId(userId);
       })
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
+      .catch((error) => console.error(error));
   }, []);
 
-  const [isLoading, setLoading] = useState(true);
+
   const [data, setData] = useState([]);
   const [userId, setUserId] = useState();
   const [id, setId] = useState();
   const [title, setTitle] = useState();
   const [body, setBody] = useState();
-  //const renderPostItem = () =>{
-  //<TouchableOpacity/* onPress={() => navigation.navigate('PostDetails', {item: null})}*/>
 
-  // const [isSelected, setIsSelected] = React.useState(false);
-
-  const HomeScreen = ({ route, navigation }) => {
     const renderPostItem = ({ item }) => {
-      return (
-        <View style={styles.container}>
-          {isLoading ? (
-            <ActivityIndicator />
-          ) : (
-            data.map((data, id) => {
-              return (
-                <ScrollView>
-                  <SafeAreaView>
-                    <View style={styles.menuWrapper}>
-                      <Feather
-                        name="menu"
-                        size={32}
-                        style={{ elevation: 5, shadowRadius: 5 }}
-                      ></Feather>
-                      <ImageBackground
-                        source={{ uri: "https://picsum.photos/700" }}
-                        style={[
-                          styles.postItem,
-                          {
-                            marginTop: item.id === "0" ? 20 : 0,
-                          },
-                          ,
-                        ]}
-                        imageStyle={styles.postItemImage}
-                      />
-                    </View>
-                    <View style={styles.postWrapper}>
-                      <View style={styles.postItemsWrapper}>
-                        <FlatList
-                          data={url}
-                          // key={id}
-                          keyExtractor={(item) => item.id}
-                          renderItem={renderPostItem}
-                          alwaysBounceVertical={true}
-                          showsVerticalScrollIndicator={false}
-                        />
-                      </View>
-                    </View>
-                  </SafeAreaView>
-                </ScrollView>
-              );
-            })
-          )}
-        </View>
-      );
+      data.map((data, id) => {
+        return (
+          <ScrollView>
+            <SafeAreaView>
+              <ImageBackground
+                source={{ uri: "https://picsum.photos/700" }}
+                style={[
+                  styles.postItem,
+                  {
+                    marginTop: item.id === "0" ? 20 : 0,
+                  },
+                  ,
+                ]}
+                imageStyle={styles.postItemImage}
+              />
+            </SafeAreaView>
+          </ScrollView>
+        );
+      });
     };
-  };
+  return (
+    <View style={styles.container}>
+      <View style={styles.menuWrapper}>
+        <Feather
+          name="menu"
+          size={32}
+          style={{ elevation: 5, shadowRadius: 5 }}
+        ></Feather>
+      </View>
+      <View style={styles.postWrapper}>
+        <View style={styles.postItemsWrapper}>
+          <FlatList
+            data={url}
+            // key={id}
+            renderItem={renderPostItem}
+            keyExtractor={(item) => item.id}
+            alwaysBounceVertical={true}
+            showsVerticalScrollIndicator={false}
+          />
+        </View>
+      </View>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -119,10 +108,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  postWrapper: {
-    marginHorizontal: 5,
-    marginTop: 10,
-  },
+  // postWrapper: {
+  //   marginHorizontal: 5,
+  //   marginTop: 10,
+  // },
   postItemsWrapper: {
     paddingVertical: 20,
     marginBottom: 10,
