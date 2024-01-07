@@ -49,7 +49,7 @@ const HomeScreen = ({ route, navigation }) => {
         return (
           <ScrollView>
             <SafeAreaView>
-              <ImageBackground
+              {/* <ImageBackground
                 source={{ uri: "https://picsum.photos/700" }}
                 style={[
                   styles.postItem,
@@ -59,7 +59,7 @@ const HomeScreen = ({ route, navigation }) => {
                   ,
                 ]}
                 imageStyle={styles.postItemImage}
-              />
+              /> */}
             </SafeAreaView>
           </ScrollView>
         );
@@ -76,13 +76,19 @@ const HomeScreen = ({ route, navigation }) => {
       </View>
       <View style={styles.postWrapper}>
         <View style={styles.postItemsWrapper}>
-          <FlatList
-            data={url}
-            // key={id}
-            renderItem={renderPostItem}
-            keyExtractor={(item) => item.id}
-            alwaysBounceVertical={true}
-            showsVerticalScrollIndicator={false}
+        <FlatList data={url} keyExtractor={(item) => item.id} renderItem={({item}) => (
+          <Card style={[styles.postItem,
+                  {
+                    marginTop: id === "0" ? 20 : 0,
+                    marginBottom: 150,
+                  }]}>
+            <Card.Cover source={{uri: 'https://picsum.photos/700'}} />
+            <Card.Content style={styles.card}>
+              <Text>{title}</Text>
+              <Text>{body}</Text>
+            </Card.Content>
+          </Card>
+          )}
           />
         </View>
       </View>
@@ -93,20 +99,20 @@ const HomeScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignContent: "center",
-    alignItems: "center",
+    // justifyContent: "center",
+    // alignContent: "center",
+    // alignItems: "center",
   },
   card: {
     marginTop: 10,
-    width: 350, // Don't forget to change this
+    // width: 350, // Don't forget to change this
   },
   menuWrapper: {
     marginHorizontal: 20,
-    marginTop: 20,
+    marginTop: 50,
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "left",
   },
   // postWrapper: {
   //   marginHorizontal: 5,
