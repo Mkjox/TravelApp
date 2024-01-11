@@ -7,7 +7,7 @@ import {
   ImageBackground,
   Text,
   FlatList,
-  ScrollView
+  ScrollView,
 } from "react-native";
 import Post from "../components/PostDetails";
 import {
@@ -21,78 +21,63 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
 
-const url = "https://jsonplaceholder.typicode.com/posts";
-
 const HomeScreen = ({ route, navigation }) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    fetch(url)
-      .then((resp) => resp.json())
-      .then((json) => {
-        setData(json);
-        setTitle(title);
-        setBody(body);
-        setId(id);
-        setUserId(userId);
-      })
-      .catch((error) => console.error(error));
+    fetchData();
+
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          "https://jsonplaceholder.typicode.com/posts"
+        );
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
   }, []);
 
-
-  const [data, setData] = useState([]);
-  const [userId, setUserId] = useState();
-  const [id, setId] = useState();
-  const [title, setTitle] = useState();
-  const [body, setBody] = useState();
-
-    const renderPostItem = ({ item }) => {
-      data.map((data, id) => {
-        return (
-          <ScrollView>
-            <SafeAreaView>
-              {/* <ImageBackground
-                source={{ uri: "https://picsum.photos/700" }}
-                style={[
-                  styles.postItem,
-                  {
-                    marginTop: item.id === "0" ? 20 : 0,
-                  },
-                  ,
-                ]}
-                imageStyle={styles.postItemImage}
-              /> */}
-            </SafeAreaView>
-          </ScrollView>
-        );
-      });
-    };
+  if (loading) {
+    return <ActivityIndicator size={"large"} />;
+  }
+  
   return (
-    <View style={styles.container}>
-      <View style={styles.menuWrapper}>
-        <Feather
-          name="menu"
-          size={32}
-          style={{ elevation: 5, shadowRadius: 5 }}
-        ></Feather>
-      </View>
-      <View style={styles.postWrapper}>
-        <View style={styles.postItemsWrapper}>
-        <FlatList data={url} keyExtractor={(item) => item.id} renderItem={({item}) => (
-          <Card style={[styles.postItem,
-                  {
-                    marginTop: id === "0" ? 20 : 0,
-                    marginBottom: 150,
-                  }]}>
-            <Card.Cover source={{uri: 'https://picsum.photos/700'}} />
-            <Card.Content style={styles.card}>
-              <Text>{title}</Text>
-              <Text>{body}</Text>
-            </Card.Content>
-          </Card>
-          )}
-          />
+    <SafeAreaView style={{flex:1}}>
+      <View style={styles.container}>
+        <View style={styles.menuWrapper}>
+          <Feather
+            name="menu"
+            size={32}
+            style={{ elevation: 5, shadowRadius: 5 }}
+          ></Feather>
+        </View>
+        <View style={styles.postWrapper}>
+          <View style={styles.postItemsWrapper}>
+            <FlatList
+              data={data}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({ item }) => (
+                <TouchableOpacity>
+                  <Card>
+                    <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
+                    <Card.Content style={styles.card}>
+                      <Text>{item.title}</Text>
+                      <Text>{item.body}</Text>
+                    </Card.Content>
+                  </Card>
+                </TouchableOpacity>
+              )}
+            />
+          </View>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
