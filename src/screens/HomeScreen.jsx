@@ -66,7 +66,7 @@ const HomeScreen = ({ route, navigation }) => {
                 <TouchableOpacity>
                   <Card>
                     <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
-                    <Card.Content style={styles.card}>
+                    <Card.Content style={styles.postText}>
                       <Text>{item.title}</Text>
                       <Text>{item.body}</Text>
                     </Card.Content>
@@ -88,33 +88,33 @@ const styles = StyleSheet.create({
     // alignContent: "center",
     // alignItems: "center",
   },
-  card: {
-    marginTop: 10,
-    // width: 350, // Don't forget to change this
-  },
   menuWrapper: {
     marginHorizontal: 20,
-    marginTop: 50,
+    marginTop: 5,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "left",
   },
-  // postWrapper: {
-  //   marginHorizontal: 5,
-  //   marginTop: 10,
-  // },
+  postWrapper: {
+    marginHorizontal: 5,
+    marginTop: 5,
+  },
   postItemsWrapper: {
     paddingVertical: 20,
     marginBottom: 10,
-    marginLeft: 5,
+    marginHorizontal: 5,
+    width: 'auto'
   },
   postItem: {
-    width: 320,
+    width: 300,
     height: 120,
     justifyContent: "flex-end",
     marginRight: 20,
     marginHorizontal: 10,
     marginVertical: 10,
+  },
+  postText: {
+    marginTop: 10,
   },
   postItemImage: {
     borderRadius: 20,
