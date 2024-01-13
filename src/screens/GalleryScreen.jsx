@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import { Button } from "react-native-paper";
 import Feather from "@expo/vector-icons/Feather";
-import galleryData from "../assets/data/galleryData";
 import Entypo from "@expo/vector-icons/Entypo";
 
 const GalleryScreen = ({ route, navigation }) => {
@@ -40,22 +39,20 @@ const GalleryScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
         <View style={styles.menuWrapper}>
           <Feather name="menu" size={32} />
         </View>
         <View style={styles.galleryWrapper}>
           <View style={styles.galleryItemWrapper}>
-            <FlatList
+            {/* <FlatList
               data={galleryData}
               renderItem={renderGalleryItem}
               keyExtractor={(item) => item.id}
               alwaysBounceVertical={true}
               showsVerticalScrollIndicator={false}
-            />
+            /> */}
           </View>
         </View>
-      </ScrollView>
     </View>
   );
 };
@@ -66,10 +63,10 @@ const styles = StyleSheet.create({
   },
   menuWrapper: {
     marginHorizontal: 20,
-    marginTop: 20,
+    marginTop: 5,
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "left",
   },
   galleryWrapper: {
     width: "auto",
