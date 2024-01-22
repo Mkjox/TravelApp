@@ -20,6 +20,7 @@ import {
 } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
+import Category from "../components/Category";
 
 const HomeScreen = ({ route, navigation }) => {
   const [data, setData] = useState([]);
@@ -56,6 +57,9 @@ const HomeScreen = ({ route, navigation }) => {
             size={32}
             style={{ elevation: 5, shadowRadius: 5 }}
           ></Feather>
+          <FlatList horizontal={true} style={styles.categoryWrapper}>
+            <Category/>
+          </FlatList>
         </View>
         <View style={styles.postWrapper}>
           <View style={styles.postItemsWrapper}>
@@ -64,7 +68,7 @@ const HomeScreen = ({ route, navigation }) => {
               keyExtractor={(item) => item.id.toString()}
               renderItem={({ item }) => (
                 <TouchableOpacity>
-                  <Card>
+                  <Card style={styles.postInnerWrapper}>
                     <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
                     <Card.Content style={styles.postText}>
                       <Text>{item.title}</Text>
@@ -95,9 +99,17 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "left",
   },
+  categoryWrapper: {
+    margin: 10,
+    flexDirection: 'row',
+  },
   postWrapper: {
     marginHorizontal: 5,
     marginTop: 5,
+    marginBottom: 10
+  },
+  postInnerWrapper:{
+    marginBottom: 8
   },
   postItemsWrapper: {
     paddingVertical: 20,
