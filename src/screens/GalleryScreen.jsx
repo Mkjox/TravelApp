@@ -11,49 +11,51 @@ import {
 import { Button } from "react-native-paper";
 import Feather from "@expo/vector-icons/Feather";
 import Entypo from "@expo/vector-icons/Entypo";
+import HomeScreen from "./HomeScreen";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const GalleryScreen = ({ route, navigation }) => {
-  const renderGalleryItem = ({ item }) => {
-    return (
-      <TouchableOpacity
-        onPress={() => navigation.navigate("Details", { item: item })}>
-        <ImageBackground
-          source={{ uri: 'https://picsum.photos/700' }}
-          style={[
-            styles.galleryItem,
-            {
-              marginTop: item.id === "0" ? 20 : 0,
-            },
-          ]} 
-          imageStyle={styles.galleryItemImage}
-        >
-          <Text style={styles.galleryItemText}>{item.title}</Text>
-          <View style={styles.galleryItemLocationWrapper}>
-            <Entypo name="location-pin" size={18} color={"#FBFCFE"} />
-            <Text style={styles.galleryItemLocationText}>{item.location}</Text>
-          </View>
-        </ImageBackground>
-      </TouchableOpacity>
-    );
-  };
-
   return (
-    <View style={styles.container}>
+    <SafeAreaView>
+      <View style={styles.container}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Details", { item: item })}
+        >
+          <ImageBackground
+            source={{ uri: "https://picsum.photos/700" }}
+            style={[
+              styles.galleryItem,
+              {
+                marginTop: item.id === "0" ? 20 : 0,
+              },
+            ]}
+            imageStyle={styles.galleryItemImage}
+          >
+            <View style={styles.galleryWrapper}>
+              <View style={styles.galleryItemWrapper}>
+                <FlatList
+                  data={url}
+                  renderItem={item}
+                  keyExtractor={(item) => item.id.toString()}
+                  alwaysBounceVertical={true}
+                  showsVerticalScrollIndicator={false}
+                />
+                <Text style={styles.galleryItemText}>{item.title}</Text>
+                <View style={styles.galleryItemLocationWrapper}>
+                  <Entypo name="location-pin" size={18} color={"#FBFCFE"} />
+                  <Text style={styles.galleryItemLocationText}>
+                    {item.location}
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </ImageBackground>
+        </TouchableOpacity>
         <View style={styles.menuWrapper}>
           <Feather name="menu" size={32} />
         </View>
-        <View style={styles.galleryWrapper}>
-          <View style={styles.galleryItemWrapper}>
-            {/* <FlatList
-              data={galleryData}
-              renderItem={renderGalleryItem}
-              keyExtractor={(item) => item.id}
-              alwaysBounceVertical={true}
-              showsVerticalScrollIndicator={false}
-            /> */}
-          </View>
-        </View>
-    </View>
+      </View>
+    </SafeAreaView>
   );
 };
 
