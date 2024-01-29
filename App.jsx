@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import ProfileScreen from "./src/screens/ProfileScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -17,7 +17,9 @@ const TabNavigator = () => {
   return (
       <Tab.Navigator
         initialRouteName="Home"
-        screenOptions={{ tabBarActiveTintColor: "#e91e63" }}
+        screenOptions={{ tabBarActiveTintColor: "#e91e63", tabBarStyle: { borderTopStartRadius: 15, borderTopEndRadius: 15 } }}
+        style={styles.nav}
+        
       >
         <Tab.Screen
           name="Home"
