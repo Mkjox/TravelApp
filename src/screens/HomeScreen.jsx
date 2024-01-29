@@ -22,13 +22,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
 import Category from "../components/Category";
 
-const HomeScreen = ({ route, navigation }) => {
+const HomeScreen = ({ navigation }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchData();
-
     async function fetchData() {
       try {
         const response = await fetch(
@@ -55,8 +54,7 @@ const HomeScreen = ({ route, navigation }) => {
           <Feather
             name="menu"
             size={32}
-            style={{ elevation: 5, shadowRadius: 5 }}
-          ></Feather>
+            style={{ elevation: 5, shadowRadius: 5 }}/>
           <FlatList horizontal={true} style={styles.categoryWrapper}>
             <Category/>
           </FlatList>
@@ -68,7 +66,7 @@ const HomeScreen = ({ route, navigation }) => {
               keyExtractor={(item) => item.id.toString()}
               renderItem={({ item }) => (
                 <TouchableOpacity>
-                  <Card style={styles.postInnerWrapper}>
+                  <Card style={styles.postInnerWrapper} onPress={() => navigation.navigate('Details', {item: item})}>
                     <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
                     <Card.Content style={styles.postText}>
                       <Text>{item.title}</Text>
@@ -94,7 +92,7 @@ const styles = StyleSheet.create({
   },
   menuWrapper: {
     marginHorizontal: 20,
-    marginTop: 5,
+    marginTop: 7,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "left",
@@ -105,7 +103,6 @@ const styles = StyleSheet.create({
   },
   postWrapper: {
     marginHorizontal: 5,
-    marginTop: 5,
     marginBottom: 10
   },
   postInnerWrapper:{
