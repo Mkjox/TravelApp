@@ -77,6 +77,11 @@ const App = () => {
           component={PostDetails}
           options={{headerShown: false}}
         />
+        <Stack.Screen
+          name="Appbar"
+          component={Appbar}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

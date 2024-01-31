@@ -1,8 +1,7 @@
-import { StackNavigationProp } from "@react-navigation/stack";
 import * as React from "react";
+import { StackNavigationProp } from "@react-navigation/stack";
 import { Platform, View, StyleSheet, TextComponent } from "react-native";
 import { Appbar, List, RadioButton, useTheme } from "react-native-paper";
-import $ from "jquery";
 import { Switch } from "react-native-gesture-handler";
 import ScreenWrapper from "./ScreenWrapper";
 
@@ -124,6 +123,7 @@ const AppBar = ({ navigation }: Props) => {
 const styles = StyleSheet.create({
   container: {
     marginBottom: 56,
+    flex: 1
   },
   contentContainer: {
     paddingVertical: 8,
