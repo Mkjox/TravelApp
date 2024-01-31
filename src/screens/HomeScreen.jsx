@@ -11,6 +11,7 @@ import { Card, ActivityIndicator } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
 import Category from "../components/Category";
+import PostDetails from "../components/PostDetails";
 
 const HomeScreen = ({ navigation }) => {
   const [data, setData] = useState([]);
@@ -60,9 +61,9 @@ const HomeScreen = ({ navigation }) => {
                 <TouchableOpacity>
                   <Card
                     style={styles.postInnerWrapper}
-                    // onPress={() =>
-                    //   navigation.navigate("Details", { item: item })
-                    // }
+                    onPress={() =>
+                      navigation.navigate("PostDetails", { item: item })
+                    }
                   >
                     <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
                     <Card.Content style={styles.postText}>
@@ -103,7 +104,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   postInnerWrapper: {
-    marginBottom: 8,
+    marginBottom: 5,
   },
   postItemsWrapper: {
     paddingVertical: 20,

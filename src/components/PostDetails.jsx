@@ -1,13 +1,13 @@
 import * as React from "react";
-import { StyleSheet, ScrollViewBase, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 function PostDetails() {
   return (
     <View style={styles.container}>
       <View style={styles.postView}>
-        <ScrollViewBase>
-          
-        </ScrollViewBase>
+        <Text>
+          Post Details
+        </Text>
       </View>
     </View>
   );

@@ -12,6 +12,7 @@ import Feather from "@expo/vector-icons/Feather";
 import Entypo from "@expo/vector-icons/Entypo";
 import { SafeAreaView } from "react-native-safe-area-context";
 import LikedData from "../assets/data/likedData.json";
+import PostDetails from "../components/PostDetails";
 
 const GalleryScreen = ({ navigation }) => {
   const [data, setData] = useState([]);
@@ -22,14 +23,11 @@ const GalleryScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      
         <View style={styles.container}>
           <View style={styles.menuWrapper}>
             <Feather name="menu" size={32} />
           </View>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("Details", { item: item })}
-          >
+          <TouchableOpacity onPress={() => navigation.navigate("PostDetails", { item: item })}>
               <View style={styles.galleryWrapper}>
                 <View style={styles.galleryItemWrapper}>
                   <FlatList
@@ -40,13 +38,13 @@ const GalleryScreen = ({ navigation }) => {
                         <Card
                           style={styles.postInnerWrapper}
                           onPress={() =>
-                            navigation.navigate("Details", { item: item })
+                            navigation.navigate("PostDetails", { item: item })
                           }
                         >
                           <Card.Cover
                             source={{ uri: "https://picsum.photos/700" }}
                           />
-                          <Card.Content style={styles.postText}>
+                          <Card.Content style={styles.galleryItemText}>
                             <Text>{item.title}</Text>
                             <Text>{item.body}</Text>
                           </Card.Content>
@@ -58,10 +56,8 @@ const GalleryScreen = ({ navigation }) => {
                   />
                   </View>
                 </View>
-
           </TouchableOpacity>
         </View>
-
     </SafeAreaView>
   );
 };
@@ -115,8 +111,12 @@ const styles = StyleSheet.create({
   galleryItemWrapper: {
     paddingVertical: 20,
     marginBottom: 10,
-    marginLeft: 5,
+    marginHorizontal: 5,
+    width: "auto",
   },
+  postInnerWrapper: {
+    marginBottom: 5
+  }
 });
 
 export default GalleryScreen;
