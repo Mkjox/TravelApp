@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import "react-native-gesture-handler";
 import HomeScreen from "./src/screens/HomeScreen";
-import GalleryScreen from "./src/screens/GalleryScreen";
+import LikedScreen from "./src/screens/LikedScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 import Appbar from './src/components/Appbar';
 import PostDetails from "./src/components/PostDetails";
@@ -32,12 +32,12 @@ const TabNavigator = () => {
           }}
         />
         <Tab.Screen
-          name="Gallery"
-          component={GalleryScreen}
+          name="Liked"
+          component={LikedScreen}
           options={{
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons
-                name="image-multiple"
+                name='heart'
                 color={color}
                 size={size}
               />
