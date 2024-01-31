@@ -4,20 +4,10 @@ import {
   StyleSheet,
   View,
   TouchableOpacity,
-  ImageBackground,
   Text,
   FlatList,
-  ScrollView,
 } from "react-native";
-import Post from "../components/PostDetails";
-import {
-  Chip,
-  useTheme,
-  Card,
-  IconButton,
-  ActivityIndicator,
-  Button,
-} from "react-native-paper";
+import { Card, ActivityIndicator } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
 import Category from "../components/Category";
@@ -46,17 +36,19 @@ const HomeScreen = ({ navigation }) => {
   if (loading) {
     return <ActivityIndicator size={"large"} />;
   }
-  
+
   return (
-    <SafeAreaView style={{flex:1}}>
+    <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
         <View style={styles.menuWrapper}>
           <Feather
             name="menu"
             size={32}
-            style={{ elevation: 5, shadowRadius: 5 }}/>
+            style={{ elevation: 5, shadowRadius: 5 }}
+            onPress={() => navigation.navigate("Appbar")}
+          />
           <FlatList horizontal={true} style={styles.categoryWrapper}>
-            <Category/>
+            <Category />
           </FlatList>
         </View>
         <View style={styles.postWrapper}>
@@ -66,7 +58,12 @@ const HomeScreen = ({ navigation }) => {
               keyExtractor={(item) => item.id.toString()}
               renderItem={({ item }) => (
                 <TouchableOpacity>
-                  <Card style={styles.postInnerWrapper} onPress={() => navigation.navigate('Details', {item: item})}>
+                  <Card
+                    style={styles.postInnerWrapper}
+                    // onPress={() =>
+                    //   navigation.navigate("Details", { item: item })
+                    // }
+                  >
                     <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
                     <Card.Content style={styles.postText}>
                       <Text>{item.title}</Text>
@@ -99,20 +96,20 @@ const styles = StyleSheet.create({
   },
   categoryWrapper: {
     margin: 10,
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   postWrapper: {
     marginHorizontal: 5,
-    marginBottom: 10
+    marginBottom: 10,
   },
-  postInnerWrapper:{
-    marginBottom: 8
+  postInnerWrapper: {
+    marginBottom: 8,
   },
   postItemsWrapper: {
     paddingVertical: 20,
     marginBottom: 10,
     marginHorizontal: 5,
-    width: 'auto'
+    width: "auto",
   },
   postItem: {
     width: 300,
