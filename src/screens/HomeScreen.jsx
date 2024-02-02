@@ -89,8 +89,8 @@ const styles = StyleSheet.create({
     // alignItems: "center",
   },
   menuWrapper: {
-    marginHorizontal: 20,
-    marginTop: 7,
+    marginHorizontal: 10,
+    marginTop: 5,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "left",
@@ -121,7 +121,11 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   postText: {
+    fontWeight: "400",
+    fontSize: 16,
+    color: "#FBFCFE",
     marginTop: 10,
+    paddingBottom: 10
   },
   postItemImage: {
     borderRadius: 20,

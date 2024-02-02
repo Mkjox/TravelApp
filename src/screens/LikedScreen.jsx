@@ -67,18 +67,18 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   menuWrapper: {
-    marginHorizontal: 20,
+    marginHorizontal: 10,
     marginTop: 5,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "left",
   },
   galleryWrapper: {
-    width: "auto",
-    height: 800,
+    marginHorizontal: 5,
+    marginBottom: 10,
   },
   galleryItem: {
-    width: 320,
+    width: 300,
     height: 120,
     justifyContent: "flex-end",
     marginRight: 20,
@@ -92,8 +92,8 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     fontSize: 16,
     color: "#FBFCFE",
-    marginHorizontal: 10,
-    marginVertical: 10,
+    marginTop: 10,
+    paddingBottom: 10
   },
   galleryItemLocationWrapper: {
     flexDirection: "row",
