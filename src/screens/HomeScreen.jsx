@@ -1,21 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { NavigationContainer } from "@react-navigation/native";
 import {
   StyleSheet,
   View,
   TouchableOpacity,
   Text,
-  FlatList,
+  FlatList
 } from "react-native";
-import { Card, ActivityIndicator } from "react-native-paper";
+import { Card, ActivityIndicator, Appbar } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
 import Category from "../components/Category";
-import PostDetails from "../components/PostDetails";
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem
+} from "@react-navigation/drawer";
+import LikedScreen from "./LikedScreen";
 
 const HomeScreen = ({ navigation }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const Drawer = createDrawerNavigator();
 
   useEffect(() => {
     fetchData();
@@ -38,6 +44,8 @@ const HomeScreen = ({ navigation }) => {
     return <ActivityIndicator size={"large"} />;
   }
 
+
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
@@ -45,8 +53,8 @@ const HomeScreen = ({ navigation }) => {
           <Feather
             name="menu"
             size={32}
-            style={{ elevation: 5, shadowRadius: 5 }}
-            onPress={() => navigation.navigate("Appbar")}
+            style={styles.menuButton}
+            // onPress={() => navigation.toggleDrawer()}
           />
           <FlatList horizontal={true} style={styles.categoryWrapper}>
             <Category />
@@ -88,6 +96,11 @@ const styles = StyleSheet.create({
     // alignContent: "center",
     // alignItems: "center",
   },
+  menuButton: {
+    elevation: 5,
+    shadowRadius: 5,
+    marginLeft: 5,
+  },
   menuWrapper: {
     marginHorizontal: 10,
     marginTop: 5,
@@ -125,7 +138,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#FBFCFE",
     marginTop: 10,
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   postItemImage: {
     borderRadius: 20,
