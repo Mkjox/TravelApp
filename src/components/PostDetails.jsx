@@ -10,17 +10,11 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import colors from "../assets/colors/colors";
-import postData from "../assets/data/postData.json";
 
 const height = Dimensions.get("window").height;
 
 const PostDetails = ({ route, navigation }) => {
   const { item } = route.params;
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    setData(postData);
-  }, []);
 
   const [heart, setHeart] = useState("heart-outlined");
   const toggleHeart = () => {
@@ -160,7 +154,7 @@ const styles = StyleSheet.create({
     fontWeight: "normal",
     fontSize: 16,
     color: colors.darkGray,
-    height: 85,
+    height: 200,
   },
   infoWrapper: {
     flexDirection: "row",
