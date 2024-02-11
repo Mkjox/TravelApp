@@ -4,7 +4,7 @@ import {
   View,
   TouchableOpacity,
   Text,
-  FlatList
+  FlatList,
 } from "react-native";
 import { Card, ActivityIndicator, Appbar } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -14,37 +14,20 @@ import {
   createDrawerNavigator,
   DrawerContentScrollView,
   DrawerItemList,
-  DrawerItem
+  DrawerItem,
 } from "@react-navigation/drawer";
-import LikedScreen from "./LikedScreen";
+import postData from "../assets/data/postData";
 
 const HomeScreen = ({ navigation }) => {
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const Drawer = createDrawerNavigator();
 
   useEffect(() => {
-    fetchData();
-    async function fetchData() {
-      try {
-        const response = await fetch(
-          "https://jsonplaceholder.typicode.com/posts"
-        );
-        const result = await response.json();
-        setData(result);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
-      }
+    try {
+      setData(postData);
+    } catch (error) {
+      console.error("Error fetching data:", error);
     }
   }, []);
-
-  if (loading) {
-    return <ActivityIndicator size={"large"} />;
-  }
-
-
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
