@@ -12,9 +12,8 @@ import Feather from "@expo/vector-icons/Feather";
 import Entypo from "@expo/vector-icons/Entypo";
 import { SafeAreaView } from "react-native-safe-area-context";
 import LikedData from "../assets/data/likedData.json";
-import PostDetails from "../components/PostDetails";
 
-const GalleryScreen = ({ navigation }) => {
+const LikedScreen = ({ navigation }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -23,41 +22,43 @@ const GalleryScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-        <View style={styles.container}>
-          <View style={styles.menuWrapper}>
-            <Feather name="menu" size={32} />
-          </View>
-          <TouchableOpacity onPress={() => navigation.navigate("PostDetails", { item: item })}>
-              <View style={styles.galleryWrapper}>
-                <View style={styles.galleryItemWrapper}>
-                  <FlatList
-                    data={data}
-                    keyExtractor={(item) => item.id.toString()}
-                    renderItem={({ item }) => (
-                      <TouchableOpacity>
-                        <Card
-                          style={styles.postInnerWrapper}
-                          onPress={() =>
-                            navigation.navigate("PostDetails", { item: item })
-                          }
-                        >
-                          <Card.Cover
-                            source={{ uri: "https://picsum.photos/700" }}
-                          />
-                          <Card.Content style={styles.galleryItemText}>
-                            <Text>{item.title}</Text>
-                            <Text>{item.body}</Text>
-                          </Card.Content>
-                        </Card>
-                      </TouchableOpacity>
-                    )}
-                    alwaysBounceVertical={true}
-                    showsVerticalScrollIndicator={false}
-                  />
-                  </View>
-                </View>
-          </TouchableOpacity>
+      <View style={styles.container}>
+        <View style={styles.menuWrapper}>
+          <Feather name="menu" size={32} style={styles.menuButton} />
         </View>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("PostDetails", { item: item })}
+        >
+          <View style={styles.galleryWrapper}>
+            <View style={styles.galleryItemWrapper}>
+              <FlatList
+                data={data}
+                keyExtractor={(item) => item.id.toString()}
+                renderItem={({ item }) => (
+                  <TouchableOpacity>
+                    <Card
+                      style={styles.postInnerWrapper}
+                      onPress={() =>
+                        navigation.navigate("PostDetails", { item: item })
+                      }
+                    >
+                      <Card.Cover
+                        source={{ uri: "https://picsum.photos/700" }}
+                      />
+                      <Card.Content style={styles.galleryItemText}>
+                        <Text>{item.title}</Text>
+                        <Text>{item.body}</Text>
+                      </Card.Content>
+                    </Card>
+                  </TouchableOpacity>
+                )}
+                alwaysBounceVertical={true}
+                showsVerticalScrollIndicator={false}
+              />
+            </View>
+          </View>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };
@@ -65,6 +66,11 @@ const GalleryScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  menuButton: {
+    elevation: 5,
+    shadowRadius: 5,
+    marginLeft: 5,
   },
   menuWrapper: {
     marginHorizontal: 10,
@@ -93,7 +99,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#FBFCFE",
     marginTop: 10,
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   galleryItemLocationWrapper: {
     flexDirection: "row",
@@ -115,8 +121,8 @@ const styles = StyleSheet.create({
     width: "auto",
   },
   postInnerWrapper: {
-    marginBottom: 5
-  }
+    marginBottom: 5,
+  },
 });
 
-export default GalleryScreen;
+export default LikedScreen;
