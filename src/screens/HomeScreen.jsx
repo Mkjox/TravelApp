@@ -10,20 +10,16 @@ import { Card, ActivityIndicator, Appbar } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
 import Category from "../components/Category";
-import {
-  createDrawerNavigator,
-  DrawerContentScrollView,
-  DrawerItemList,
-  DrawerItem,
-} from "@react-navigation/drawer";
-import postData from "../assets/data/postData";
+import LikedData from "../assets/data/likedData";
+import { MaterialIcons } from "@expo/vector-icons";
+import colors from "../assets/colors/colors";
 
 const HomeScreen = ({ navigation }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     try {
-      setData(postData);
+      setData(LikedData);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -39,9 +35,9 @@ const HomeScreen = ({ navigation }) => {
             style={styles.menuButton}
             // onPress={() => navigation.toggleDrawer()}
           />
-          <FlatList horizontal={true} style={styles.categoryWrapper}>
+          {/* <FlatList horizontal={true} style={styles.categoryWrapper}>
             <Category />
-          </FlatList>
+          </FlatList> */}
         </View>
         <View style={styles.postWrapper}>
           <View style={styles.postItemsWrapper}>
@@ -58,12 +54,20 @@ const HomeScreen = ({ navigation }) => {
                   >
                     <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
                     <Card.Content style={styles.postText}>
-                      <Text>{item.title}</Text>
+                      <Text style={styles.postItemTitle}>
+                      {item.title}
+                      </Text>
+                      <Text style={styles.postPlace}>
+                      <MaterialIcons name="place" size={15} color={colors.darkGray}/>
+                      {item.place}
+                      </Text>
                       <Text>{item.body}</Text>
                     </Card.Content>
                   </Card>
                 </TouchableOpacity>
               )}
+              alwaysBounceVertical={true}
+              showsVerticalScrollIndicator={false}
             />
           </View>
         </View>
@@ -122,6 +126,15 @@ const styles = StyleSheet.create({
     color: "#FBFCFE",
     marginTop: 10,
     paddingBottom: 10,
+  },
+  postItemTitle: {
+    marginBottom: 7.5,
+    fontSize: 16,
+    color: colors.black
+  },
+  postPlace: {
+    marginBottom: 7.5,
+    color: colors.darkGray
   },
   postItemImage: {
     borderRadius: 20,
