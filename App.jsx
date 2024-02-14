@@ -1,3 +1,4 @@
+import React from "react";
 import { StyleSheet } from "react-native";
 import ProfileScreen from "./src/screens/ProfileScreen";
 import { NavigationContainer } from "@react-navigation/native";
@@ -7,6 +8,12 @@ import "react-native-gesture-handler";
 import HomeScreen from "./src/screens/HomeScreen";
 import LikedScreen from "./src/screens/LikedScreen";
 import { createStackNavigator } from "@react-navigation/stack";
+import {
+  DrawerItem,
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+} from "@react-navigation/drawer";
 import Appbar from "./src/components/Appbar";
 import PostDetails from "./src/components/PostDetails";
 import SettingsScreen from "./src/screens/SettingsScreen";
@@ -14,6 +21,7 @@ import DonateScreen from "./src/screens/DonateScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
 const TabNavigator = () => {
   return (
@@ -58,6 +66,14 @@ const TabNavigator = () => {
   );
 };
 
+const DrawerNavigator = () => {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="Appbar" component={Appbar} />
+    </Drawer.Navigator>
+  );
+}
+
 const App = () => {
   return (
     <NavigationContainer>
@@ -67,6 +83,7 @@ const App = () => {
           component={TabNavigator}
           options={styles.header}
         />
+        <Stack.Screen name="DrawerNavigator" component={DrawerNavigator} />
         <Stack.Screen
           name="PostDetails"
           component={PostDetails}
@@ -109,8 +126,8 @@ const styles = StyleSheet.create({
     // display: 'flex'
   },
   header: {
-    headerShown: false
-  }
+    headerShown: false,
+  },
 });
 
 export default App;
