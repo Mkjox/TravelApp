@@ -6,13 +6,15 @@ import {
   Text,
   FlatList,
 } from "react-native";
-import { Card, ActivityIndicator, Appbar } from "react-native-paper";
+import { Card } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
 import Category from "../components/Category";
 import LikedData from "../assets/data/likedData";
 import { MaterialIcons } from "@expo/vector-icons";
 import colors from "../assets/colors/colors";
+import { DrawerActions } from '@react-navigation/drawer';
+import { Appbar } from '../components/Appbar';
 
 const HomeScreen = ({ navigation }) => {
   const [data, setData] = useState([]);
@@ -33,11 +35,35 @@ const HomeScreen = ({ navigation }) => {
             name="menu"
             size={32}
             style={styles.menuButton}
-            // onPress={() => navigation.toggleDrawer()}
+            onPress={() => navigation.navigate("Appbar")}
           />
           {/* <FlatList horizontal={true} style={styles.categoryWrapper}>
             <Category />
           </FlatList> */}
+        </View>
+        <View style={styles.explore}>
+          <View style={styles.exploreItem}>
+            <Text>All</Text>
+            <Text>Routes</Text>
+            <Text>City</Text>
+            <Text>Experiences</Text>
+          </View>
+        </View>
+        <View style={styles.pinnedPostWrapper}>
+          <FlatList
+            data={data}
+            keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => (
+              <View>
+                <Card style={styles.pinnedPost}>
+                  <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
+                  <Card.Title>{item.title}</Card.Title>
+                  <View style={styles.pinnedPostLocation}>
+                    <MaterialIcons name="place" size={15}/>
+                    <Text>{item.place}</Text>
+                  </View>
+                </Card>
+              </View>
+            )} horizontal={true}/>
         </View>
         <View style={styles.postWrapper}>
           <View style={styles.postItemsWrapper}>
@@ -54,12 +80,14 @@ const HomeScreen = ({ navigation }) => {
                   >
                     <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
                     <Card.Content style={styles.postText}>
-                      <Text style={styles.postItemTitle}>
-                      {item.title}
-                      </Text>
+                      <Text style={styles.postItemTitle}>{item.title}</Text>
                       <Text style={styles.postPlace}>
-                      <MaterialIcons name="place" size={15} color={colors.darkGray}/>
-                      {item.place}
+                        <MaterialIcons
+                          name="place"
+                          size={15}
+                          color={colors.darkGray}
+                        />
+                        {item.place}
                       </Text>
                       <Text>{item.body}</Text>
                     </Card.Content>
@@ -130,11 +158,11 @@ const styles = StyleSheet.create({
   postItemTitle: {
     marginBottom: 7.5,
     fontSize: 16,
-    color: colors.black
+    color: colors.black,
   },
   postPlace: {
     marginBottom: 7.5,
-    color: colors.darkGray
+    color: colors.darkGray,
   },
   postItemImage: {
     borderRadius: 20,
