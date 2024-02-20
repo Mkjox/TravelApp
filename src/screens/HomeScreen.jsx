@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Text,
   FlatList,
+  ImageBackground,
 } from "react-native";
 import { Card } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -15,9 +16,14 @@ import { MaterialIcons } from "@expo/vector-icons";
 import colors from "../assets/colors/colors";
 import { DrawerActions } from '@react-navigation/drawer';
 import { Appbar } from '../components/Appbar';
+import { useFonts, Poppins_400Regular } from "@expo-google-fonts/poppins";
+import Entypo from '@expo/vector-icons/Entypo';
 
 const HomeScreen = ({ navigation }) => {
   const [data, setData] = useState([]);
+  let [fontLoaded] = useFonts({
+    Poppins_400Regular
+  });
 
   useEffect(() => {
     try {
@@ -37,33 +43,35 @@ const HomeScreen = ({ navigation }) => {
             style={styles.menuButton}
             onPress={() => navigation.navigate("Appbar")}
           />
-          {/* <FlatList horizontal={true} style={styles.categoryWrapper}>
-            <Category />
-          </FlatList> */}
         </View>
-        <View style={styles.explore}>
+        <View>
+          <Text style={styles.explore}>Explore</Text>
           <View style={styles.exploreItem}>
-            <Text>All</Text>
-            <Text>Routes</Text>
-            <Text>City</Text>
-            <Text>Experiences</Text>
+            <Text style={styles.exploreItemText}>All</Text>
+            <Text style={styles.exploreItemText}>Routes</Text>
+            <Text style={styles.exploreItemText}>City</Text>
+            <Text style={styles.exploreItemText}>Experiences</Text>
           </View>
         </View>
         <View style={styles.pinnedPostWrapper}>
           <FlatList
             data={data}
             keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => (
-              <View>
-                <Card style={styles.pinnedPost}>
-                  <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
-                  <Card.Title>{item.title}</Card.Title>
-                  <View style={styles.pinnedPostLocation}>
-                    <MaterialIcons name="place" size={15}/>
-                    <Text>{item.place}</Text>
+              <TouchableOpacity onPress={() => navigation.navigate('Details', {
+                item: item
+              })}>
+                <ImageBackground src={item.image} style={styles.pinnedPost} imageStyle={styles.pinnedPostImage}>
+                  <Text style={styles.pinnedPostTitle}>{item.title}</Text>
+                  <View style={styles.pinnedPostLocationWrapper}>
+                    <Entypo name="location-pin" size={18} color={colors.white} />
+                    <Text style={styles.pinnedPostLocationText}>{item.place}</Text>
                   </View>
-                </Card>
-              </View>
-            )} horizontal={true}/>
+                </ImageBackground>
+              </TouchableOpacity>
+            )} horizontal={true} showsHorizontalScrollIndicator={false} />
+        </View>
+        <View style={styles.activityWrapper}>
+              
         </View>
         <View style={styles.postWrapper}>
           <View style={styles.postItemsWrapper}>
@@ -123,9 +131,59 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "left",
   },
-  categoryWrapper: {
-    margin: 10,
-    flexDirection: "row",
+  explore: {
+    lineHeight: 80,
+    fontSize: 18,
+    fontFamily: 'Poppins_400Regular',
+    marginLeft: 20,
+    fontWeight: '700',
+  },
+  exploreItem: {
+    fontSize: 24,
+    alignContent: 'center',
+    width: 343,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  exploreItemText: {
+    fontWeight: '500',
+    fontSize: 16,
+    color: colors.gray
+  },
+  pinnedPostWrapper: {
+    paddingVertical: 20,
+    marginHorizontal: 12,
+    // width: 'auto',
+    // height: 300,
+    // borderRadius: 12,
+    // marginVertical: 10
+  },
+  pinnedPost: {
+    width: 180,
+    height: 270,
+    justifyContent: 'flex-end',
+    paddingHorizontal: 10,
+    paddingVertical: 15,
+    marginRight: 20
+  },
+  pinnedPostImage: {
+    borderRadius: 15
+  },
+  pinnedPostTitle: {
+    fontWeight: '400',
+    fontSize: 18,
+    color: colors.white
+  },
+  pinnedPostLocationWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 5
+  },
+  pinnedPostLocationText: {
+    marginLeft: 5,
+    fontWeight: '400',
+    fontSize: 14,
+    color: colors.white
   },
   postWrapper: {
     marginHorizontal: 5,
