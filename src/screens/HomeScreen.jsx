@@ -10,20 +10,16 @@ import {
 import { Card } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
-import Category from "../components/Category";
+import Activity from "../components/Activity";
 import LikedData from "../assets/data/likedData";
 import { MaterialIcons } from "@expo/vector-icons";
 import colors from "../assets/colors/colors";
 import { DrawerActions } from '@react-navigation/drawer';
 import { Appbar } from '../components/Appbar';
-import { useFonts, Poppins_400Regular } from "@expo-google-fonts/poppins";
 import Entypo from '@expo/vector-icons/Entypo';
 
 const HomeScreen = ({ navigation }) => {
   const [data, setData] = useState([]);
-  let [fontLoaded] = useFonts({
-    Poppins_400Regular
-  });
 
   useEffect(() => {
     try {
@@ -57,7 +53,7 @@ const HomeScreen = ({ navigation }) => {
           <FlatList
             data={data}
             keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => (
-              <TouchableOpacity onPress={() => navigation.navigate('Details', {
+              <TouchableOpacity onPress={() => navigation.navigate('PostDetails', {
                 item: item
               })}>
                 <ImageBackground src={item.image} style={styles.pinnedPost} imageStyle={styles.pinnedPostImage}>
@@ -71,7 +67,10 @@ const HomeScreen = ({ navigation }) => {
             )} horizontal={true} showsHorizontalScrollIndicator={false} />
         </View>
         <View style={styles.activityWrapper}>
-              
+          <Text style={styles.activityTitle}>Activities</Text>
+          <View style={styles.activityCategories}>
+            <Activity/>
+          </View>
         </View>
         <View style={styles.postWrapper}>
           <View style={styles.postItemsWrapper}>
@@ -134,7 +133,6 @@ const styles = StyleSheet.create({
   explore: {
     lineHeight: 80,
     fontSize: 18,
-    fontFamily: 'Poppins_400Regular',
     marginLeft: 20,
     fontWeight: '700',
   },
@@ -184,6 +182,18 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontSize: 14,
     color: colors.white
+  },
+  activityWrapper: {
+
+  },
+  activityTitle: {
+    fontSize: 18,
+    marginLeft: 20,
+    fontWeight: '700'
+  },
+  activityCategories: {
+    flexDirection: 'row',
+    marginHorizontal: 20,
   },
   postWrapper: {
     marginHorizontal: 5,
