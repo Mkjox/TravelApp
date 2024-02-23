@@ -18,6 +18,8 @@ import Appbar from "./src/components/Appbar";
 import PostDetails from "./src/components/PostDetails";
 import SettingsScreen from "./src/screens/SettingsScreen";
 import DonateScreen from "./src/screens/DonateScreen";
+import Post from "./src/components/Post";
+import Explore from "./src/components/Explore";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -42,6 +44,7 @@ const TabNavigator = () => {
           headerShown: false,
         }}
       />
+      
       <Tab.Screen
         name="Liked"
         component={LikedScreen}
@@ -52,6 +55,7 @@ const TabNavigator = () => {
           headerShown: false,
         }}
       />
+
       <Tab.Screen
         name="Profile"
         component={ProfileScreen}
@@ -66,13 +70,14 @@ const TabNavigator = () => {
   );
 };
 
-const DrawerNavigator = () => {
-  return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Appbar" component={Appbar} />
-    </Drawer.Navigator>
-  );
-}
+// const Sidebar = () => {
+//   return (
+//     <Drawer.Navigator initialRouteName="Appbar">
+//       <Drawer.Screen name="Appbar" component={Appbar}/>
+//       <Drawer.Screen name="Settings" component={SettingsScreen}/>
+//     </Drawer.Navigator>
+//   );
+// }
 
 const App = () => {
   return (
@@ -83,25 +88,41 @@ const App = () => {
           component={TabNavigator}
           options={styles.header}
         />
-        <Stack.Screen name="DrawerNavigator" component={DrawerNavigator} />
+
+        {/* <Stack.Screen name="Sidebar" component={Sidebar} /> */}
+
         <Stack.Screen
           name="PostDetails"
           component={PostDetails}
           options={styles.header}
         />
+
         <Stack.Screen
           name="Appbar"
           component={Appbar}
           options={styles.header}
         />
+
         <Stack.Screen
           name="Settings"
           component={SettingsScreen}
           options={styles.header}
         />
+
         <Stack.Screen
           name="Donate"
           component={DonateScreen}
+          options={styles.header}
+        />
+
+        <Stack.Screen
+          name="Post"
+          component={Post}
+          options={styles.header} />
+
+        <Stack.Screen
+          name="Explore"
+          component={Explore}
           options={styles.header}
         />
       </Stack.Navigator>
