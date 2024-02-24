@@ -27,6 +27,11 @@ const LikedScreen = ({ navigation }) => {
         <View style={styles.menuWrapper}>
           <Feather name="menu" size={32} style={styles.menuButton} />
         </View>
+        <View>
+          <Text style={styles.title}>
+            Liked Posts
+          </Text>
+        </View>
         <View style={styles.likedWrapper}>
           <View style={styles.likedItemWrapper}>
             <FlatList
@@ -68,17 +73,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  menuButton: {
-    elevation: 5,
-    shadowRadius: 5,
-    marginLeft: 5,
-  },
   menuWrapper: {
     marginHorizontal: 10,
     marginTop: 5,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "left",
+  },
+  menuButton: {
+    elevation: 5,
+    shadowRadius: 5,
+    marginLeft: 5,
+  },
+  title: {
+    fontSize: 14,
+    marginHorizontal: 15,
+    marginTop: 16,
+    fontWeight: '500'
   },
   likedWrapper: {
     marginHorizontal: 5,
