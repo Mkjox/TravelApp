@@ -3,13 +3,13 @@ import { View, Text, FlatList, TouchableOpacity, ImageBackground, StyleSheet } f
 import colors from "../assets/colors/colors";
 import Entypo from '@expo/vector-icons/Entypo';
 import LikedData from "../assets/data/likedData";
-import PostDetails from "./PostDetails";
+import { useNavigation } from "@react-navigation/core";
 
 
 
-
-function Explore({ navigation }) {
+function Explore() {
     const [data, setData] = useState([]);
+    const navigation = useNavigation();
 
     useEffect(() => {
         try {

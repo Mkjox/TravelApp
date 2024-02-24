@@ -3,14 +3,14 @@ import { View, Text, FlatList, TouchableOpacity, StyleSheet } from "react-native
 import colors from "../assets/colors/colors";
 import { Card } from "react-native-paper";
 import { MaterialIcons } from "@expo/vector-icons";
-import PostDetails from "./PostDetails";
-
+import { useNavigation } from "@react-navigation/core";
 
 
 import LikedData from "../assets/data/likedData";
 
-function Post({navigation}) {
+function Post() {
     const [data, setData] = useState([]);
+    const navigation = useNavigation();
 
     useEffect(() => {
         try {
