@@ -24,7 +24,7 @@ const PostDetails = ({ route, navigation }) => {
   return (
     <View style={styles.container}>
       <ImageBackground
-        src="https://picsum.photos/700"
+        src={item.image}
         style={styles.backgroundImage}
       >
         <TouchableOpacity

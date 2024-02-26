@@ -34,7 +34,7 @@ function Post() {
                                     navigation.navigate("PostDetails", { item: item })
                                 }
                             >
-                                <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
+                                <Card.Cover src={item.image} />
                                 <Card.Content style={styles.postText}>
                                     <Text style={styles.postItemTitle}>{item.title}</Text>
                                     <Text style={styles.postPlace}>
@@ -67,8 +67,7 @@ const styles = StyleSheet.create({
         marginBottom: 5,
       },
       postItemsWrapper: {
-        paddingVertical: 20,
-        marginBottom: 10,
+        paddingTop: 10,
         marginHorizontal: 5,
         width: "auto",
       },
