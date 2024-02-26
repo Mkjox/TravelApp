@@ -7,15 +7,17 @@ import {
   ImageBackground,
   Text,
 } from "react-native";
-import { Card } from "react-native-paper";
 import Feather from "@expo/vector-icons/Feather";
 import { MaterialIcons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import LikedData from "../assets/data/likedData.json";
 import colors from "../assets/colors/colors";
+import { useNavigation } from "@react-navigation/core";
 
-const LikedScreen = ({ navigation }) => {
+
+const LikedScreen = () => {
   const [data, setData] = useState([]);
+  const navigation = useNavigation;
 
   useEffect(() => {
     setData(LikedData);
@@ -38,25 +40,15 @@ const LikedScreen = ({ navigation }) => {
               data={data}
               keyExtractor={(item) => item.id.toString()}
               renderItem={({ item }) => (
-                <TouchableOpacity>
-                  <Card
-                    style={styles.likedPostInnerWrapper}
-                    onPress={() =>
-                      navigation.navigate("PostDetails", { item: item })
-                    }
-                  >
-                    <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
-                    <Card.Content style={styles.likedItemText}>
-                      <Text style={styles.likedItemTitle}>
-                      {item.title}
-                      </Text>
-                      <Text style={styles.likedItemPlace}>
-                      <MaterialIcons name="place" size={15} color={"black"}/>
-                      {item.place}
-                      </Text>
-                      <Text>{item.body}</Text>
-                    </Card.Content>
-                  </Card>
+                <TouchableOpacity  onPress={() => navigation.navigate("PostDetails")}>
+                  <View style={styles.likedItemWrapper}>
+                    <ImageBackground src={item.image} style={styles.likedItemImage}>
+                      <Text style={styles.likedItemTitle}>{item.title}</Text>
+                      <MaterialIcons name='location-pin' size={18} color={colors.white} style={styles.likedItemLocationWrapper}>
+                        <Text style={styles.likedItemLocationText}>{item.place}</Text>
+                      </MaterialIcons>
+                    </ImageBackground>
+                  </View>
                 </TouchableOpacity>
               )}
               alwaysBounceVertical={true}
@@ -95,54 +87,40 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     marginBottom: 10,
   },
-  likedItem: {
-    width: 300,
-    height: 120,
-    justifyContent: "flex-end",
-    marginRight: 20,
-    marginHorizontal: 10,
-    marginVertical: 10,
+  // likedItem: {
+  //   width: 300,
+  //   height: 120,
+  //   justifyContent: "flex-end",
+  //   marginRight: 20,
+  //   marginHorizontal: 10,
+  //   marginVertical: 10,
+  // },
+  likedItemWrapper: {
+    paddingVertical: 10,
+    marginHorizontal: 5,
+    width: "auto",
   },
   likedItemImage: {
+    height: 200,
+    width: 330,
+    justifyContent: 'flex-end',
     borderRadius: 20,
   },
-  likedItemText: {
-    fontWeight: "400",
-    fontSize: 16,
-    color: "#FBFCFE",
-    marginTop: 10,
-    paddingBottom: 10,
-  },
   likedItemTitle: {
-    marginBottom: 7.5,
     fontSize: 16,
-    color: colors.black
-  },
-  likedItemPlace: {
-    marginBottom: 7.5,
-    color: colors.darkGray
+    color: "#D9D9D9",
+    marginBottom: 10,
+    marginLeft: 10,
+    fontWeight: '500'
   },
   likedItemLocationWrapper: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 5,
     marginLeft: 5,
-  },
-  likedItemLocationText: {
-    marginLeft: 5,
-    fontWeight: "400",
-    fontSize: 15,
-    color: "#FBFCFE",
-    marginBottom: 5,
-  },
-  likedItemWrapper: {
-    paddingVertical: 20,
     marginBottom: 10,
-    marginHorizontal: 5,
-    width: "auto",
-  },
-  likedPostInnerWrapper: {
-    marginBottom: 5,
+    fontWeight: "400",
+    fontSize: 14,
+    color: "#FBFCFE",
   },
 });
 
