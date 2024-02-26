@@ -9,7 +9,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import colors from "../assets/colors/colors";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from 'react-native-gesture-handler';
-
+import { useNavigation } from '@react-navigation/core';
 
 
 function Activity() {
@@ -43,6 +43,10 @@ function Activity() {
                 <TouchableOpacity style={styles.activityItem}>
                     <MaterialCommunityIcons name="ski-water" size={40} color={colors.blue} />
                     <Text style={styles.activityText}>Water ski</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.activityItem}>
+                    <MaterialCommunityIcons name='swim' size={40} color={colors.blue}/>
+                    <Text style={styles.activityText}>Swim</Text>
                 </TouchableOpacity>
             </ScrollView>
         </View>
