@@ -38,23 +38,23 @@ const ProfileScreen = () => {
       </View>
       <View style={styles.countWrapper}>
         <Text>Count</Text>
-        <Caption>Post Count</Caption>
+        <Caption style={{fontSize: 14}}>Post Count</Caption>
       </View>
       <View style={styles.options}>
-        <FontAwesome name="heart">
-          <Text>Liked Posts</Text>
+        <FontAwesome name="heart" style={styles.optionItem} size={17} color={'#3CB2D8'}>
+          <Text style={styles.optionItemText}> Liked Posts</Text>
         </FontAwesome>
-        <FontAwesome name="comment">
-          <Text>Comments</Text>
+        <FontAwesome name="comment" style={styles.optionItem} size={17} color={'#3CB2D8'}>
+          <Text style={styles.optionItemText}> Comments</Text>
         </FontAwesome>
-        <FontAwesome name="pencil">
-          <Text>Customize Profile</Text>
+        <FontAwesome name="pencil" style={styles.optionItem} size={17} color={'#3CB2D8'}>
+          <Text style={styles.optionItemText}> Customize Profile</Text>
         </FontAwesome>
-        <FontAwesome name="share">
-          <Text>Recommend the app to your friend</Text>
+        <FontAwesome name="share" style={styles.optionItem} size={17} color={'#3CB2D8'}>
+          <Text style={styles.optionItemText}> Recommend the app to your friend</Text>
         </FontAwesome>
-        <FontAwesome name="gear">
-          <Text>Settings</Text>
+        <FontAwesome name="gear" style={styles.optionItem} size={17} color={'#3CB2D8'}>
+          <Text style={styles.optionItemText}> Settings</Text>
         </FontAwesome>
       </View>
     </SafeAreaView>
@@ -66,29 +66,51 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   profileTopWrapper: {
-    backgroundColor: '#3CB2D8',
+    backgroundColor: '#6BCDED',
     borderBottomEndRadius: 20,
     borderBottomLeftRadius: 20,
     height: 300,
-    alignItems: 'center',
     shadowOpacity: 30,
+  },
+  avatar: {
+    marginTop: 25,
+    marginBottom: 10,
+    alignSelf: 'center'
   },
   information: {
   },
   headerText: {
     fontWeight: '800',
     color: colors.white,
-    fontSize: 18
-  },
-  avatar: {
-    marginTop: 15,
-    marginBottom: 10
+    fontSize: 18,
+    alignSelf: 'center'
   },
   profileDetails: {
-    marginVertical: 5,
+    marginVertical: 7,
+    marginLeft: 120
   },
   profileDetailsText: {
     fontWeight: '400',
+  },
+  countWrapper: {
+    alignItems: 'center',
+    marginVertical: 10,
+    borderStyle: "dashed",
+    borderBottomWidth: 2,
+    borderBottomColor: colors.darkGray,
+    height: 60,
+    marginBottom: 15
+  },
+  options: {
+    flexDirection: 'column',
+    marginLeft: 40
+  },
+  optionItem: {
+    marginVertical: 10,
+    height: 20
+  },
+  optionItemText: {
+    color: colors.black
   }
 });
 
