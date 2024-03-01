@@ -12,11 +12,14 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
 import Activity from "../components/Activity";
 import LikedData from "../assets/data/likedData";
-import colors from "../assets/colors/colors";
 import { DrawerActions } from '@react-navigation/drawer';
 import { Appbar } from '../components/Appbar';
 import Explore from '../components/Explore';
 import Post from '../components/Post';
+
+
+{/* DO NOT FORGET TO ADD SCROLLVIEW OR FIX THE ERROR ABOUT VIRTUALIZED LISTS */}
+
 
 const HomeScreen = ({ navigation }) => {
   const [data, setData] = useState([]);
@@ -31,7 +34,6 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-    <ScrollView>
       <View style={styles.container}>
         <View style={styles.menuWrapper}>
           <Feather
@@ -57,7 +59,6 @@ const HomeScreen = ({ navigation }) => {
           <Post/>
         </View>
       </View>
-      </ScrollView>
     </SafeAreaView>
   );
 };

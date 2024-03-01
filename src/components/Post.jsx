@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
       },
       postPlace: {
         marginBottom: 7.5,
-        color: colors.darkGray,
+        color: colors.black,
       },
       postItemImage: {
         borderRadius: 20,

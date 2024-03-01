@@ -1,13 +1,15 @@
 import * as react from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { Ionicons } from '@expo/vector-icons';
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 const SettingsScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-    <View style={styles.back}>
-    <Ionicons name="arrow-back" size={24} color="black" />
-    </View>
+      <View style={styles.back}>
+        <TouchableOpacity onPress={navigation.goback()}>
+          <Ionicons name="arrow-back" size={24} color="black" />
+        </TouchableOpacity>
+      </View>
       <View style={styles.text}>
         <Text>- Settings Screen -</Text>
         <Text>I will design this page later</Text>
@@ -21,11 +23,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   back: {
-    alignItems: 'left',
+    alignItems: "left",
     marginTop: 35,
-    flexDirection: 'row',
+    flexDirection: "row",
     marginHorizontal: 10,
-    justifyContent: 'flex-start'
+    justifyContent: "flex-start",
   },
   text: {
     alignItems: "center",

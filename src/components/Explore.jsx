@@ -5,8 +5,6 @@ import Entypo from '@expo/vector-icons/Entypo';
 import LikedData from "../assets/data/likedData";
 import { useNavigation } from "@react-navigation/core";
 
-
-
 function Explore() {
     const [data, setData] = useState([]);
     const navigation = useNavigation();
@@ -29,7 +27,8 @@ function Explore() {
                     <Text style={styles.exploreItemText}>City</Text>
                     <Text style={styles.exploreItemText}>Experiences</Text>
                 </View>
-            </View><View style={styles.pinnedPostWrapper}>
+            </View>
+            <View style={styles.pinnedPostWrapper}>
                 <FlatList
                     data={data}
                     keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => (
@@ -56,19 +55,19 @@ const styles = StyleSheet.create({
         fontSize: 18,
         marginLeft: 20,
         fontWeight: '700',
-      },
-      exploreItem: {
+    },
+    exploreItem: {
         fontSize: 24,
         alignContent: 'center',
         width: 343,
         flexDirection: 'row',
         justifyContent: 'space-around',
-      },
-      exploreItemText: {
+    },
+    exploreItemText: {
         fontWeight: '500',
         fontSize: 16,
         color: colors.gray
-      },
+    },
     pinnedPostWrapper: {
         paddingVertical: 20,
         marginHorizontal: 12,
