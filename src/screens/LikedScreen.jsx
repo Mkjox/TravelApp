@@ -13,11 +13,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import LikedData from "../assets/data/likedData.json";
 import colors from "../assets/colors/colors";
 import { useNavigation } from "@react-navigation/core";
-
+import PostDetails from "../components/PostDetails";
 
 const LikedScreen = () => {
   const [data, setData] = useState([]);
-  const navigation = useNavigation;
+  const navigation = useNavigation();
 
   useEffect(() => {
     setData(LikedData);
@@ -40,7 +40,7 @@ const LikedScreen = () => {
               data={data}
               keyExtractor={(item) => item.id.toString()}
               renderItem={({ item }) => (
-                <TouchableOpacity  onPress={() => navigation.navigate("PostDetails")}>
+                <TouchableOpacity  onPress={() => navigation.navigate("PostDetails", {item: item})}>
                   <View style={styles.likedItemWrapper}>
                     <ImageBackground src={item.image} style={styles.likedItemImage}>
                       <Text style={styles.likedItemTitle}>{item.title}</Text>
