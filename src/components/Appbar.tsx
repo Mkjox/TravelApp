@@ -52,6 +52,7 @@ const AppBar = ({ navigation }: Props) => {
     //isCenterAlignedMode
   ]);
 
+  
   const renderDefaultOptions = () => (
     <>
       <View style={styles.row}>
@@ -114,7 +115,7 @@ const AppBar = ({ navigation }: Props) => {
           </List.Section>
         )}
       </ScreenWrapper>
-      <Appbar style={styles.bottom} theme={{mode: showExactTheme ? 'exact' : 'adaptive'}}>
+      <Appbar style={styles.bottom} theme={{ mode: showExactTheme ? 'exact' : 'adaptive' }} children={undefined}>
       </Appbar>
     </>
   );

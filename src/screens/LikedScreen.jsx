@@ -13,14 +13,18 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import LikedData from "../assets/data/likedData.json";
 import colors from "../assets/colors/colors";
 import { useNavigation } from "@react-navigation/core";
-import PostDetails from "../components/PostDetails";
 
 const LikedScreen = () => {
   const [data, setData] = useState([]);
   const navigation = useNavigation();
 
   useEffect(() => {
+    try {
     setData(LikedData);
+    }
+    catch (error) {
+      console.error("Error fetching data:", error)
+    }
   }, []);
 
   return (
@@ -44,9 +48,10 @@ const LikedScreen = () => {
                   <View style={styles.likedItemWrapper}>
                     <ImageBackground src={item.image} style={styles.likedItemImage}>
                       <Text style={styles.likedItemTitle}>{item.title}</Text>
-                      <MaterialIcons name='location-pin' size={18} color={colors.white} style={styles.likedItemLocationWrapper}>
-                        <Text style={styles.likedItemLocationText}>{item.place}</Text>
-                      </MaterialIcons>
+                      <Text style={styles.likedItemLocationWrapper}>
+                      <MaterialIcons name='location-pin' size={14} color={colors.white}/>
+                        {item.place}
+                      </Text>
                     </ImageBackground>
                   </View>
                 </TouchableOpacity>

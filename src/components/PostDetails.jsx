@@ -10,6 +10,7 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import colors from "../assets/colors/colors";
+import { ScrollView } from "react-native-gesture-handler";
 
 const height = Dimensions.get("window").height;
 
@@ -22,6 +23,7 @@ const PostDetails = ({ route, navigation }) => {
   };
 
   return (
+    <ScrollView>
     <View style={styles.container}>
       <ImageBackground
         src={item.image}
@@ -78,6 +80,7 @@ const PostDetails = ({ route, navigation }) => {
         </View>
       </View>
     </View>
+    </ScrollView>
   );
 };
 
@@ -87,6 +90,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     // justifyContent: 'center',
     // alignItems: 'center',
+    height: 1000
   },
   backgroundImage: {
     height: height * 0.499,
@@ -159,7 +163,6 @@ const styles = StyleSheet.create({
   infoWrapper: {
     flexDirection: "row",
     marginHorizontal: 20,
-    marginTop: 20,
     justifyContent: "space-between",
   },
   infoTitle: {
