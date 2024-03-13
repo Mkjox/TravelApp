@@ -4,8 +4,6 @@ import colors from "../assets/colors/colors";
 import { Card } from "react-native-paper";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/core";
-
-
 import LikedData from "../assets/data/likedData";
 
 function Post() {
