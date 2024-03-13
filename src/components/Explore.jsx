@@ -22,7 +22,8 @@ function Explore() {
             <View>
                 <Text style={styles.explore}>Explore</Text>
                 <View style={styles.exploreItem}>
-                    <Text style={styles.exploreItemText}>All</Text>
+                    {/* Add color blue for the selected INSTEAD OF THIS */}
+                    <Text style={[styles.exploreItemText, {color: colors.blue}]}>All</Text>
                     <Text style={styles.exploreItemText}>Routes</Text>
                     <Text style={styles.exploreItemText}>City</Text>
                     <Text style={styles.exploreItemText}>Experiences</Text>
