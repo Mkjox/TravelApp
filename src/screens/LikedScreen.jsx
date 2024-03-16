@@ -20,7 +20,7 @@ const LikedScreen = () => {
 
   useEffect(() => {
     try {
-    setData(LikedData);
+      setData(LikedData);
     }
     catch (error) {
       console.error("Error fetching data:", error)
@@ -44,13 +44,13 @@ const LikedScreen = () => {
               data={data}
               keyExtractor={(item) => item.id.toString()}
               renderItem={({ item }) => (
-                <TouchableOpacity  onPress={() => navigation.navigate("PostDetails", {item: item})}>
+                <TouchableOpacity onPress={() => navigation.navigate("PostDetails", { item: item })}>
                   <View style={styles.likedItemWrapper}>
                     <ImageBackground src={item.image} style={styles.likedItemImage}>
                       <Text style={styles.likedItemTitle}>{item.title}</Text>
                       <Text style={styles.likedItemLocationWrapper}>
-                      <MaterialIcons name='location-pin' size={14} color={colors.white}/>
-                        {item.place}
+                        <MaterialIcons name='location-pin' size={14} color={colors.white} />
+                        <Text>{item.place}</Text>
                       </Text>
                     </ImageBackground>
                   </View>
