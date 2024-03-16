@@ -32,6 +32,7 @@ function Explore() {
             <View style={styles.pinnedPostWrapper}>
                 <FlatList
                     data={data}
+                    maxToRenderPerBatch={5}
                     keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => (
                         <TouchableOpacity onPress={() => navigation.navigate('PostDetails', {
                             item: item

@@ -24,6 +24,7 @@ function Post() {
                 <FlatList
                     data={data}
                     keyExtractor={(item) => item.id.toString()}
+                    maxToRenderPerBatch={15}
                     renderItem={({ item }) => (
                         <TouchableOpacity>
                             <Card
