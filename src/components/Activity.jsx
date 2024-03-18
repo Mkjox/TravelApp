@@ -15,7 +15,7 @@ import { useNavigation } from '@react-navigation/core';
 function Activity() {
     return (
         <View style={styles.activityWrapper}>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                 <TouchableOpacity style={styles.activityItem}>
                     <MaterialCommunityIcons name="hiking" size={40} color={colors.blue} />
                     <Text style={styles.activityText}>Hiking</Text>
