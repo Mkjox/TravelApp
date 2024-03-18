@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   StyleSheet,
   View,
-  TouchableOpacity,
   Text,
-  FlatList,
-  ImageBackground,
-  ScrollView,
+  RefreshControl,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
@@ -16,6 +13,7 @@ import { DrawerActions } from '@react-navigation/drawer';
 import { Appbar } from '../components/Appbar';
 import Explore from '../components/Explore';
 import Post from '../components/Post';
+import { ScrollView } from "react-native-gesture-handler";
 
 
 {/* DO NOT FORGET TO ADD SCROLLVIEW OR FIX THE ERROR ABOUT VIRTUALIZED LISTS */}
@@ -23,6 +21,7 @@ import Post from '../components/Post';
 
 const HomeScreen = ({ navigation }) => {
   const [data, setData] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
     try {
@@ -32,8 +31,17 @@ const HomeScreen = ({ navigation }) => {
     }
   }, []);
 
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, []);
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
+    <ScrollView nestedScrollEnabled={true} contentContainerStyle={{flexGrow: 1}} 
+    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}>
       <View style={styles.container}>
         <View style={styles.menuWrapper}>
           <Feather
@@ -59,6 +67,7 @@ const HomeScreen = ({ navigation }) => {
           <Post/>
         </View>
       </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -69,6 +78,7 @@ const styles = StyleSheet.create({
     // justifyContent: "center",
     // alignContent: "center",
     // alignItems: "center",
+    backgroundColor: '#EEEEEE'
   },
   menuButton: {
     elevation: 5,
