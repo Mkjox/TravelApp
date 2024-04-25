@@ -24,62 +24,67 @@ const PostDetails = ({ route, navigation }) => {
 
   return (
     <ScrollView>
-    <View style={styles.container}>
-      <ImageBackground
-        src={item.image}
-        style={styles.backgroundImage}
-      >
-        <TouchableOpacity
-          style={styles.backIcon}
-          onPress={() => navigation.goBack()}
+      <View style={styles.container}>
+        <ImageBackground
+          src={item.image}
+          style={styles.backgroundImage}
         >
-          <Entypo name="chevron-left" size={32} color={colors.white} />
-        </TouchableOpacity>
-        <View style={styles.titlesWrapper}>
-          <Text style={styles.itemTitle}>{item.title}</Text>
-          <View style={styles.locationWrapper}>
-            <MaterialIcons name="place" size={24} color="white" />
-            <Text style={styles.locationText}>{item.place}</Text>
-          </View>
-        </View>
-      </ImageBackground>
-      <View style={styles.descriptionWrapper}>
-        <TouchableOpacity onPress={toggleHeart} style={styles.heart}>
-          <Entypo name={heart} size={32} color={colors.orange}/>
-        </TouchableOpacity>
-        <View style={styles.descriptionTextWrapper}>
-          <Text style={styles.descriptionTitle}>Description</Text>
-          <Text style={styles.descriptionText}>{item.body}</Text>
-        </View>
-        {/*  Can add another languages later and make this more dynamic  */}
-
-        <View style={styles.infoWrapper}>
-          <View style={styles.infoItem}>
-            <Text style={styles.infoTitle}>Price</Text>
-            <View style={styles.infoTextWrapper}>
-              <Text style={styles.infoText}>{item.price}</Text>
-              <Text style={styles.infoSubText}>/per</Text>
+          <TouchableOpacity
+            style={styles.backIcon}
+            onPress={() => navigation.goBack()}
+          >
+            <Entypo name="chevron-left" size={32} color={colors.white} />
+          </TouchableOpacity>
+          <View style={styles.titlesWrapper}>
+            <Text style={styles.itemTitle}>{item.title}</Text>
+            <View style={styles.locationWrapper}>
+              <MaterialIcons name="place" size={24} color="white" />
+              <Text style={styles.locationText}>{item.place}</Text>
             </View>
           </View>
+        </ImageBackground>
+        <View style={styles.descriptionWrapper}>
+          <TouchableOpacity onPress={toggleHeart} style={styles.heart}>
+            <Entypo name={heart} size={32} color={colors.orange} />
+          </TouchableOpacity>
+          <View style={styles.descriptionTextWrapper}>
+            <Text style={styles.descriptionTitle}>Description</Text>
+            <Text style={styles.descriptionText}>{item.body}</Text>
+          </View>
+          {/*  Can add another languages later and make this more dynamic  */}
 
-          <View style={styles.infoItem}>
-            <Text style={styles.infoTitle}>Rating</Text>
-            <View style={styles.infoTextWrapper}>
-              <Text style={styles.infoText}>{item.rating}</Text>
-              <Text style={styles.infoSubText}>/per</Text>
+          <View style={styles.infoWrapper}>
+            <View style={styles.infoItem}>
+              <Text style={styles.infoTitle}>Price</Text>
+              <View style={styles.infoTextWrapper}>
+                <Text style={styles.infoText}>{item.price}</Text>
+                <Text style={styles.infoSubText}>/per</Text>
+              </View>
+            </View>
+
+            <View style={styles.infoItem}>
+              <Text style={styles.infoTitle}>Rating</Text>
+              <View style={styles.infoTextWrapper}>
+                <Text style={styles.infoText}>{item.rating}</Text>
+                <Text style={styles.infoSubText}>/per</Text>
+              </View>
+            </View>
+
+            <View style={styles.infoItem}>
+              <Text style={styles.infoTitle}>Duration</Text>
+              <View style={styles.infoTextWrapper}>
+                <Text style={styles.infoText}>{item.duration}</Text>
+                <Text style={styles.infoSubText}>/ hour</Text>
+              </View>
             </View>
           </View>
-
-          <View style={styles.infoItem}>
-            <Text style={styles.infoTitle}>Duration</Text>
-            <View style={styles.infoTextWrapper}>
-              <Text style={styles.infoText}>{item.duration}</Text>
-              <Text style={styles.infoSubText}>/ hour</Text>
+          <View style={styles.CommentsWrapper}>
+            <View style={styles.CommentsInnerWrapper}>
+              <Text style={styles.CommentsTitle}>Comments</Text>
             </View>
           </View>
         </View>
       </View>
-    </View>
     </ScrollView>
   );
 };
@@ -157,8 +162,10 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontWeight: "normal",
     fontSize: 16,
-    color: colors.darkGray,
-    height: 200,
+    color: colors.black,
+    height: 'auto',
+    marginBottom: 20,
+    textAlign: 'center'
   },
   infoWrapper: {
     flexDirection: "row",
@@ -185,6 +192,18 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.darkGray,
   },
+  CommentsWrapper: {
+    marginTop: 20,
+    marginHorizontal: 20
+  },
+  CommentsInnerWrapper: {
+
+  },
+  CommentsTitle: {
+    fontWeight: '400',
+    fontSize: 24,
+    
+  }
 });
 
 export default PostDetails;
