@@ -14,6 +14,8 @@ import { Appbar } from '../components/Appbar';
 import Explore from '../components/Explore';
 import Post from '../components/Post';
 import { ScrollView } from "react-native-gesture-handler";
+import { Searchbar } from "react-native-paper";
+import colors from "../assets/colors/colors";
 
 
 {/* DO NOT FORGET TO ADD SCROLLVIEW OR FIX THE ERROR ABOUT VIRTUALIZED LISTS */}
@@ -22,6 +24,7 @@ import { ScrollView } from "react-native-gesture-handler";
 const HomeScreen = ({ navigation }) => {
   const [data, setData] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     try {
@@ -35,7 +38,7 @@ const HomeScreen = ({ navigation }) => {
     setRefreshing(true);
     setTimeout(() => {
       setRefreshing(false);
-    }, 2000);
+    }, 1500);
   }, []);
 
   return (
@@ -49,6 +52,13 @@ const HomeScreen = ({ navigation }) => {
             size={32}
             style={styles.menuButton}
             onPress={() => navigation.navigate("Appbar")}
+          />
+          {/* Don't forget to add post parameters for this */}
+          <Searchbar style={styles.searchBar}
+            placeholder="Search"
+            onChangeText={setSearchQuery}
+            value={searchQuery}
+            mode="bar"
           />
         </View>
         <View>
@@ -84,6 +94,12 @@ const styles = StyleSheet.create({
     elevation: 5,
     shadowRadius: 5,
     marginLeft: 5,
+    marginTop: 10
+  },
+  searchBar: {
+    width: 280,
+    marginHorizontal: 5,
+    backgroundColor: '#f1f1f1'
   },
   menuWrapper: {
     marginHorizontal: 10,

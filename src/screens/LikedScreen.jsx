@@ -13,10 +13,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import LikedData from "../assets/data/likedData.json";
 import colors from "../assets/colors/colors";
 import { useNavigation } from "@react-navigation/core";
+import { Searchbar } from "react-native-paper";
 
 const LikedScreen = () => {
   const [data, setData] = useState([]);
   const navigation = useNavigation();
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     try {
@@ -32,6 +34,12 @@ const LikedScreen = () => {
       <View style={styles.container}>
         <View style={styles.menuWrapper}>
           <Feather name="menu" size={32} style={styles.menuButton} />
+          <Searchbar style={styles.searchBar}
+            placeholder="Search"
+            onChangeText={setSearchQuery}
+            value={searchQuery}
+            mode="bar"
+          />
         </View>
         <View>
           <Text style={styles.title}>
@@ -69,6 +77,7 @@ const LikedScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#EEEEEE'
   },
   menuWrapper: {
     marginHorizontal: 10,
@@ -81,6 +90,12 @@ const styles = StyleSheet.create({
     elevation: 5,
     shadowRadius: 5,
     marginLeft: 5,
+    marginTop: 10
+  },
+  searchBar: {
+    width: 280,
+    marginHorizontal: 5,
+    backgroundColor: '#f1f1f1'
   },
   title: {
     fontSize: 14,
