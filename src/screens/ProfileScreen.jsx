@@ -42,7 +42,7 @@ const ProfileScreen = () => {
       </View>
       <View style={styles.options}>
         <FontAwesome name="heart" style={styles.optionItem} size={17} color={'#3CB2D8'}>
-          <Text style={styles.optionItemText}> Liked Posts</Text>
+          <Text style={styles.optionItemText}> Shared Posts</Text>
         </FontAwesome>
         <FontAwesome name="comment" style={styles.optionItem} size={17} color={'#3CB2D8'}>
           <Text style={styles.optionItemText}> Comments</Text>
