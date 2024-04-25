@@ -25,12 +25,8 @@ function Activity() {
                     <Text style={styles.activityText}>Bicycle</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.activityItem}>
-                    <MaterialCommunityIcons name="motorbike" size={40} color={colors.blue} />
-                    <Text style={styles.activityText}>Motorcycle</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.activityItem}>
                     <MaterialCommunityIcons name="car" size={40} color={colors.blue} />
-                    <Text style={styles.activityText}>Car</Text>
+                    <Text style={styles.activityText}>Drive</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.activityItem}>
                     <MaterialCommunityIcons name="kayaking" size={40} color={colors.blue} />
