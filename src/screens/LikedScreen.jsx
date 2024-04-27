@@ -98,10 +98,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#f1f1f1'
   },
   title: {
-    fontSize: 14,
+    fontSize: 16,
     marginHorizontal: 15,
     marginTop: 16,
-    fontWeight: '500'
+    fontWeight: '600',
+    textAlign: 'center'
   },
   likedWrapper: {
     marginHorizontal: 5,

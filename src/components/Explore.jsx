@@ -23,7 +23,7 @@ function Explore() {
                 <Text style={styles.explore}>Explore</Text>
                 <View style={styles.exploreItem}>
                     {/* Add color blue for the selected INSTEAD OF THIS */}
-                    <Text style={[styles.exploreItemText, {color: colors.blue}]}>All</Text>
+                    <Text style={[styles.exploreItemText, {color: colors.tealdark}]}>All</Text>
                     <Text style={styles.exploreItemText}>Routes</Text>
                     <Text style={styles.exploreItemText}>City</Text>
                     <Text style={styles.exploreItemText}>Experiences</Text>
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     },
     pinnedPost: {
         width: 180,
-        height: 270,
+        height: 230,
         justifyContent: 'flex-end',
         paddingHorizontal: 10,
         paddingVertical: 15,
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     },
     pinnedPostTitle: {
         fontWeight: '400',
-        fontSize: 18,
+        fontSize: 16,
         color: colors.white
     },
     pinnedPostLocationWrapper: {
