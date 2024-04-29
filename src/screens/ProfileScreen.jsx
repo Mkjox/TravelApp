@@ -38,22 +38,22 @@ const ProfileScreen = () => {
       </View>
       <View style={styles.countWrapper}>
         <Text>Count</Text>
-        <Caption style={{fontSize: 14}}>Post Count</Caption>
+        <Caption style={{ fontSize: 14 }}>Post Count</Caption>
       </View>
       <View style={styles.options}>
-        <FontAwesome name="heart" style={styles.optionItem} size={17} color={'#3CB2D8'}>
+        <FontAwesome name="heart" style={styles.optionItem} size={17}>
           <Text style={styles.optionItemText}> Shared Posts</Text>
         </FontAwesome>
-        <FontAwesome name="comment" style={styles.optionItem} size={17} color={'#3CB2D8'}>
+        <FontAwesome name="comment" style={styles.optionItem} size={17}>
           <Text style={styles.optionItemText}> Comments</Text>
         </FontAwesome>
-        <FontAwesome name="pencil" style={styles.optionItem} size={17} color={'#3CB2D8'}>
+        <FontAwesome name="pencil" style={styles.optionItem} size={17}>
           <Text style={styles.optionItemText}> Customize Profile</Text>
         </FontAwesome>
-        <FontAwesome name="share" style={styles.optionItem} size={17} color={'#3CB2D8'}>
+        <FontAwesome name="share" style={styles.optionItem} size={17}>
           <Text style={styles.optionItemText}> Recommend the app to your friend</Text>
         </FontAwesome>
-        <FontAwesome name="gear" style={styles.optionItem} size={17} color={'#3CB2D8'}>
+        <FontAwesome name="gear" style={styles.optionItem} size={17}>
           <Text style={styles.optionItemText}> Settings</Text>
         </FontAwesome>
       </View>
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   profileTopWrapper: {
-    backgroundColor: '#6BCDED',
+    backgroundColor: colors.teallight,
     borderBottomEndRadius: 20,
     borderBottomLeftRadius: 20,
     height: 300,
@@ -107,10 +107,11 @@ const styles = StyleSheet.create({
   },
   optionItem: {
     marginVertical: 10,
-    height: 20
+    height: 20,
+    color: colors.teallight
   },
   optionItemText: {
-    color: colors.black
+    color: colors.black,
   }
 });
 
