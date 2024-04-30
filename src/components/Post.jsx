@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, ImageBackground } from "react-native";
 import colors from "../assets/colors/colors";
 import { Card } from "react-native-paper";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/core";
 import LikedData from "../assets/data/likedData";
+import { Entypo } from '@expo/vector-icons';
 
 function Post() {
     const [data, setData] = useState([]);
     const navigation = useNavigation();
+    const [heart, setHeart] = useState("heart-outlined");
+
+    const toggleHeart = () => {
+        setHeart(heart === "heart-outlined" ? "heart" : "heart-outlined");
+    };
 
     useEffect(() => {
         try {
@@ -32,7 +38,11 @@ function Post() {
                                     navigation.navigate("PostDetails", { item: item })
                                 }
                             >
-                                <Card.Cover src={item.image} />
+                                <ImageBackground src={item.image} style={styles.postItemImage}>
+                                    <TouchableOpacity onPress={toggleHeart} style={styles.heart}>
+                                        <Entypo name={heart} size={28} color={colors.orange} />
+                                    </TouchableOpacity>
+                                </ImageBackground>
                                 <Card.Content style={styles.postText}>
                                     <Text style={styles.postItemTitle}>{item.title}</Text>
                                     <Text style={styles.postPlace}>
@@ -60,42 +70,62 @@ const styles = StyleSheet.create({
     postWrapper: {
         marginHorizontal: 5,
         marginBottom: 10,
-      },
-      postInnerWrapper: {
+    },
+    postInnerWrapper: {
         marginBottom: 5,
-      },
-      postItemsWrapper: {
+    },
+    postItemsWrapper: {
         paddingTop: 10,
         marginHorizontal: 5,
         width: "auto",
-      },
-      postItem: {
+    },
+    postItem: {
         width: 300,
         height: 120,
         justifyContent: "flex-end",
         marginRight: 20,
         marginHorizontal: 10,
         marginVertical: 10,
-      },
-      postText: {
+    },
+    postText: {
         fontWeight: "400",
         fontSize: 16,
         color: "#FBFCFE",
         marginTop: 10,
         paddingBottom: 10,
-      },
-      postItemTitle: {
+    },
+    postItemTitle: {
         marginBottom: 7.5,
         fontSize: 16,
         color: colors.black,
-      },
-      postPlace: {
+    },
+    postPlace: {
         marginBottom: 7.5,
         color: colors.black,
-      },
-      postItemImage: {
+    },
+    postItemImage: {
         borderRadius: 20,
-      },
+        height: 200
+    },
+    heart: {
+        position: "absolute",
+        right: 15,
+        bottom: 15,
+        width: 44,
+        height: 44,
+        backgroundColor: colors.white,
+        borderRadius: 64,
+        justifyContent: 'center',
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5
+    }
 });
 
 export default Post;
