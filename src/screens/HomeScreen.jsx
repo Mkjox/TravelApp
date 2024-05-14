@@ -43,7 +43,7 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView nestedScrollEnabled={true} contentContainerStyle={{ flexGrow: 1 }}
+      <ScrollView nestedScrollEnabled={true} contentContainerStyle={{ flexGrow: 1 } }
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
         <View style={styles.container}>
           <View style={styles.menuWrapper}>
@@ -61,9 +61,6 @@ const HomeScreen = ({ navigation }) => {
               mode="bar"
             />
           </View>
-          <TouchableOpacity style={styles.plusIcon}>
-            <Feather name="plus" size={32} />
-          </TouchableOpacity>
           <View>
             {/* Explore component called here */}
             <Explore />
@@ -82,6 +79,9 @@ const HomeScreen = ({ navigation }) => {
 
         </View>
       </ScrollView>
+      <TouchableOpacity style={styles.plusIcon} onPress={() => navigation.navigate("AddPost")}>
+            <Feather name="plus" size={36} color={colors.white}/>
+          </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -125,17 +125,16 @@ const styles = StyleSheet.create({
   },
   plusIcon: {
     position: 'absolute',
-    color: colors.black,
     borderRadius: 60,
     borderColor: colors.white,
     borderStyle: "solid",
     alignItems: 'center',
     justifyContent: 'center',
     right: 20,
-    top: 30,
-    width: 44,
-    height: 44,
-    backgroundColor: colors.white,
+    bottom: 20,
+    width: 46,
+    height: 46,
+    backgroundColor: colors.tealdark,
     shadowColor: '#000',
     shadowOffset: {
       width: 2,

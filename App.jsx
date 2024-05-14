@@ -20,6 +20,7 @@ import SettingsScreen from "./src/screens/SettingsScreen";
 import DonateScreen from "./src/screens/DonateScreen";
 import Post from "./src/components/Post";
 import Explore from "./src/components/Explore";
+import AddPostScreen from "./src/screens/AddPostScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -123,6 +124,12 @@ const App = () => {
         <Stack.Screen
           name="Explore"
           component={Explore}
+          options={styles.header}
+        />
+
+        <Stack.Screen
+          name="AddPost"
+          component={AddPostScreen}
           options={styles.header}
         />
       </Stack.Navigator>
