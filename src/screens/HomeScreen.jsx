@@ -4,6 +4,7 @@ import {
   View,
   Text,
   RefreshControl,
+  TouchableOpacity
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
@@ -17,8 +18,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { Searchbar } from "react-native-paper";
 import colors from "../assets/colors/colors";
 
-
-{/* DO NOT FORGET TO ADD SCROLLVIEW OR FIX THE ERROR ABOUT VIRTUALIZED LISTS */}
+{/* DO NOT FORGET TO ADD SCROLLVIEW OR FIX THE ERROR ABOUT VIRTUALIZED LISTS */ }
 
 
 const HomeScreen = ({ navigation }) => {
@@ -43,40 +43,44 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-    <ScrollView nestedScrollEnabled={true} contentContainerStyle={{flexGrow: 1}} 
-    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}>
-      <View style={styles.container}>
-        <View style={styles.menuWrapper}>
-          <Feather
-            name="menu"
-            size={32}
-            style={styles.menuButton}
-            onPress={() => navigation.navigate("Appbar")}
-          />
-          {/* Don't forget to add post parameters for this */}
-          <Searchbar style={styles.searchBar}
-            placeholder="Search"
-            onChangeText={setSearchQuery}
-            value={searchQuery}
-            mode="bar"
-          />
-        </View>
-        <View>
-          {/* Explore component called here */}
-          <Explore />
-        </View>
-        <View style={styles.activityWrapper}>
-          <Text style={styles.activityTitle}>Activities</Text>
-          <View style={styles.activityCategories}>
-            {/* Activity component called here */}
-            <Activity />
+      <ScrollView nestedScrollEnabled={true} contentContainerStyle={{ flexGrow: 1 }}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
+        <View style={styles.container}>
+          <View style={styles.menuWrapper}>
+            <Feather
+              name="menu"
+              size={32}
+              style={styles.menuButton}
+              onPress={() => navigation.navigate("Appbar")}
+            />
+            {/* Don't forget to add post parameters for this */}
+            <Searchbar style={styles.searchBar}
+              placeholder="Search"
+              onChangeText={setSearchQuery}
+              value={searchQuery}
+              mode="bar"
+            />
           </View>
+          <TouchableOpacity style={styles.plusIcon}>
+            <Feather name="plus" size={32} />
+          </TouchableOpacity>
+          <View>
+            {/* Explore component called here */}
+            <Explore />
+          </View>
+          <View style={styles.activityWrapper}>
+            <Text style={styles.activityTitle}>Activities</Text>
+            <View style={styles.activityCategories}>
+              {/* Activity component called here */}
+              <Activity />
+            </View>
+          </View>
+          <View style={styles.postWrapper}>
+            {/* Post component called here */}
+            <Post />
+          </View>
+
         </View>
-        <View style={styles.postWrapper}>
-        {/* Post component called here */}
-          <Post/>
-        </View>
-      </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -119,6 +123,28 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginHorizontal: 20,
   },
+  plusIcon: {
+    position: 'absolute',
+    color: colors.black,
+    borderRadius: 60,
+    borderColor: colors.white,
+    borderStyle: "solid",
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: 20,
+    top: 30,
+    width: 44,
+    height: 44,
+    backgroundColor: colors.white,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 2,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius:3.84,
+    elevation: 5,
+  }
 });
 
 export default HomeScreen;
