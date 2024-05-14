@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Entypo } from '@expo/vector-icons';
 import colors from '../assets/colors/colors';
 
-const PostAddScreen = ({ navigation }) => {
+const AddPostScreen = ({ navigation }) => {
     <SafeAreaView>
         <View style={styles.container}>
             <TouchableOpacity style={styles.backIcon} onPress={() => navigation.goBack()}>
@@ -20,4 +20,4 @@ var styles = StyleSheet.create({
     }
 });
 
-export default PostAddScreen;
+export default AddPostScreen;
