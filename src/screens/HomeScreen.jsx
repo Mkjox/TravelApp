@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     bottom: 20,
     width: 46,
     height: 46,
-    backgroundColor: colors.tealdark,
+    backgroundColor: colors.teallight,
     shadowColor: '#000',
     shadowOffset: {
       width: 2,
