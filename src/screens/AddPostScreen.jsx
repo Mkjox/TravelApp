@@ -5,7 +5,21 @@ import { Entypo } from '@expo/vector-icons';
 import colors from '../assets/colors/colors';
 
 const AddPostScreen = ({ navigation }) => {
-    const [text, setText] = useState('');
+    const [inputs, setInputs] = useState({
+        title: '',
+        description: '',
+        place: '',
+        price: '',
+        rating: '',
+        duration: ''
+    });
+    const handleInputChange = (name, value) => {
+        setInputs({
+            ...inputs,
+            [name]: value
+        });
+    };
+
     const handleSubmit = () => {
 
     };
@@ -20,32 +34,32 @@ const AddPostScreen = ({ navigation }) => {
                 </View>
                 <View>
                     <TextInput style={styles.textInput}
-                        onChangeText={text => setText(text)}
-                        value={text}
+                        onChangeText={text => handleInputChange('title', text)}
+                        value={inputs.title}
                         placeholder='Enter Title' />
                     <TextInput style={styles.textInput}
-                        onChangeText={text => setText(text)}
-                        value={text}
+                        onChangeText={text => handleInputChange('description', text)}
+                        value={inputs.description}
                         placeholder='Enter Description'
                     />
                     <TextInput style={styles.textInput}
-                        onChangeText={text => setText(text)}
-                        value={text}
+                        onChangeText={text => handleInputChange('place', text)}
+                        value={inputs.place}
                         placeholder='Enter Place'
                     />
                     <TextInput style={styles.textInput}
-                        onChangeText={text => setText(text)}
-                        value={text}
+                        onChangeText={text => handleInputChange('price', text)}
+                        value={inputs.price}
                         placeholder='Enter Price'
                     />
                     <TextInput style={styles.textInput}
-                        onChangeText={text => setText(text)}
-                        value={text}
+                        onChangeText={text => handleInputChange('rating', text)}
+                        value={inputs.rating}
                         placeholder='Enter Rating'
                     />
                     <TextInput style={styles.textInput}
-                        onChangeText={text => setText(text)}
-                        value={text}
+                        onChangeText={text => handleInputChange('duration', text)}
+                        value={inputs.duration}
                         placeholder='Enter Duration'
                     />
                     <Button onPress={handleSubmit} title='Submit' style={styles.button} />
