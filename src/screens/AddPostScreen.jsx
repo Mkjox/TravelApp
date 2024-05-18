@@ -3,6 +3,7 @@ import { View, StyleSheet, TouchableOpacity, Text, TextInput, Button } from 'rea
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Entypo } from '@expo/vector-icons';
 import colors from '../assets/colors/colors';
+import { color } from '@rneui/base';
 
 const AddPostScreen = ({ navigation }) => {
     const [inputs, setInputs] = useState({
@@ -62,7 +63,9 @@ const AddPostScreen = ({ navigation }) => {
                         value={inputs.duration}
                         placeholder='Enter Duration'
                     />
-                    <Button onPress={handleSubmit} title='Submit' style={styles.button} />
+                    <View style={styles.button}>
+                    <Button onPress={handleSubmit} title='Submit' color={colors.teallight} />
+                    </View>
                 </View>
             </View>
         </SafeAreaView>
@@ -71,7 +74,8 @@ const AddPostScreen = ({ navigation }) => {
 
 var styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor: '#EEEEEE'
     },
     header: {
         marginTop: 20,
@@ -80,13 +84,20 @@ var styles = StyleSheet.create({
     },
     textInput: {
         marginHorizontal: 10,
-        marginVertical: 10,
+        marginTop: 15,
         alignSelf: 'center',
         color: colors.teallight,
-        width: 'auto'
+        width: 300,
+        backgroundColor: colors.white,
+        height: 70,
+        textAlign: 'center',
+        borderRadius: 15
     },
     button: {
-        marginTop: 10
+        width: 300,
+        margin: 10,
+        alignSelf:'center',
+        borderRadius: 20
     }
 });
 
