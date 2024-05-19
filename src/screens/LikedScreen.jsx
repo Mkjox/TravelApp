@@ -13,7 +13,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import LikedData from "../assets/data/likedData.json";
 import colors from "../assets/colors/colors";
 import { useNavigation } from "@react-navigation/core";
-import { Searchbar } from "react-native-paper";
+import { Card, Searchbar } from "react-native-paper";
 
 const LikedScreen = () => {
   const [data, setData] = useState([]);
@@ -47,27 +47,27 @@ const LikedScreen = () => {
           </Text>
         </View>
         <View style={styles.likedWrapper}>
-          <View style={styles.likedItemWrapper}>
             <FlatList
               data={data}
               keyExtractor={(item) => item.id.toString()}
               renderItem={({ item }) => (
                 <TouchableOpacity onPress={() => navigation.navigate("PostDetails", { item: item })}>
-                  <View style={styles.likedItemWrapper}>
-                    <ImageBackground src={item.image} style={styles.likedItemImage}>
+                  <Card style={styles.likedItemWrapper}>
+                    <ImageBackground src={item.image} style={styles.likedItemImage} />
+                    <Card.Content>
                       <Text style={styles.likedItemTitle}>{item.title}</Text>
-                      <Text style={styles.likedItemLocationWrapper}>
-                        <MaterialIcons name='location-pin' size={14} color={colors.white} />
-                        <Text>{item.place}</Text>
-                      </Text>
-                    </ImageBackground>
-                  </View>
+                        <Text style={styles.likedItemLocation}>
+                          <MaterialIcons name='place' size={15} color={colors.black} />
+                          {item.place}
+                          </Text>
+                        <Text>{item.body}</Text>
+                    </Card.Content>
+                  </Card>
                 </TouchableOpacity>
               )}
               alwaysBounceVertical={true}
               showsVerticalScrollIndicator={false}
             />
-          </View>
         </View>
       </View>
     </SafeAreaView>
@@ -99,7 +99,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    marginHorizontal: 15,
     marginTop: 16,
     fontWeight: '600',
     textAlign: 'center'
@@ -107,41 +106,38 @@ const styles = StyleSheet.create({
   likedWrapper: {
     marginHorizontal: 5,
     marginBottom: 10,
+    borderRadius: 20,
+    paddingTop: 7,
   },
-  // likedItem: {
-  //   width: 300,
-  //   height: 120,
-  //   justifyContent: "flex-end",
-  //   marginRight: 20,
-  //   marginHorizontal: 10,
-  //   marginVertical: 10,
-  // },
   likedItemWrapper: {
-    paddingVertical: 10,
     marginHorizontal: 5,
+    marginVertical: 5,
     width: "auto",
   },
   likedItemImage: {
     height: 200,
-    width: 330,
+    overflow: 'hidden',
     justifyContent: 'flex-end',
-    borderRadius: 20,
+    borderRadius: 10,
+    borderWidth: 0
   },
   likedItemTitle: {
     fontSize: 16,
-    color: "#D9D9D9",
-    marginBottom: 10,
-    marginLeft: 10,
+    color: colors.black,
+    marginBottom: 5,
+    marginTop: 10,
     fontWeight: '500'
+  },
+  likedItemLocation: {
+    marginVertical: 5,
   },
   likedItemLocationWrapper: {
     flexDirection: "row",
     alignItems: "center",
-    marginLeft: 5,
     marginBottom: 10,
     fontWeight: "400",
     fontSize: 14,
-    color: "#FBFCFE",
+    color: colors.black,
   },
 });
 
