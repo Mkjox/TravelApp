@@ -8,7 +8,7 @@ import {
   Text,
 } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
-import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialIcons, Entypo } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import LikedData from "../assets/data/likedData.json";
 import colors from "../assets/colors/colors";
@@ -19,6 +19,11 @@ const LikedScreen = () => {
   const [data, setData] = useState([]);
   const navigation = useNavigation();
   const [searchQuery, setSearchQuery] = useState('');
+  const [heart, setHeart] = useState("heart");
+
+  const toggleHeart = () => {
+    setHeart(heart === "heart" ? "heart-outlined" : "heart");
+  };
 
   useEffect(() => {
     try {
@@ -47,27 +52,31 @@ const LikedScreen = () => {
           </Text>
         </View>
         <View style={styles.likedWrapper}>
-            <FlatList
-              data={data}
-              keyExtractor={(item) => item.id.toString()}
-              renderItem={({ item }) => (
-                <TouchableOpacity onPress={() => navigation.navigate("PostDetails", { item: item })}>
-                  <Card style={styles.likedItemWrapper}>
-                    <ImageBackground src={item.image} style={styles.likedItemImage} />
-                    <Card.Content>
-                      <Text style={styles.likedItemTitle}>{item.title}</Text>
-                        <Text style={styles.likedItemLocation}>
-                          <MaterialIcons name='place' size={15} color={colors.black} />
-                          {item.place}
-                          </Text>
-                        <Text>{item.body}</Text>
-                    </Card.Content>
-                  </Card>
-                </TouchableOpacity>
-              )}
-              alwaysBounceVertical={true}
-              showsVerticalScrollIndicator={false}
-            />
+          <FlatList
+            data={data}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
+              <TouchableOpacity onPress={() => navigation.navigate("PostDetails", { item: item })}>
+                <Card style={styles.likedItemWrapper}>
+                  <ImageBackground src={item.image} style={styles.likedItemImage}>
+                    <TouchableOpacity onPress={toggleHeart} style={styles.heart}>
+                      <Entypo name={heart} size={28} color={colors.orange} />
+                    </TouchableOpacity>
+                  </ImageBackground>
+                  <Card.Content>
+                    <Text style={styles.likedItemTitle}>{item.title}</Text>
+                    <Text style={styles.likedItemLocation}>
+                      <MaterialIcons name='place' size={15} color={colors.black} />
+                      {item.place}
+                    </Text>
+                    <Text>{item.body}</Text>
+                  </Card.Content>
+                </Card>
+              </TouchableOpacity>
+            )}
+            alwaysBounceVertical={true}
+            showsVerticalScrollIndicator={false}
+          />
         </View>
       </View>
     </SafeAreaView>
@@ -119,7 +128,25 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     justifyContent: 'flex-end',
     borderRadius: 10,
-    borderWidth: 0
+  },
+  heart: {
+    position: "absolute",
+    right: 11,
+    bottom: 15,
+    width: 44,
+    height: 44,
+    backgroundColor: colors.white,
+    borderRadius: 64,
+    justifyContent: "center",
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5
   },
   likedItemTitle: {
     fontSize: 16,
