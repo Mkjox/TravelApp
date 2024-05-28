@@ -80,17 +80,17 @@ const styles = StyleSheet.create({
   information: {
   },
   headerText: {
-    fontWeight: '800',
+    fontFamily: 'Poppins_500Medium',
     color: colors.white,
     fontSize: 18,
     alignSelf: 'center'
   },
   profileDetails: {
-    marginVertical: 7,
+    marginVertical: 4,
     marginLeft: 120
   },
   profileDetailsText: {
-    fontWeight: '400',
+    fontFamily: 'Poppins_300Light',
   },
   countWrapper: {
     alignItems: 'center',
@@ -108,10 +108,12 @@ const styles = StyleSheet.create({
   optionItem: {
     marginVertical: 10,
     height: 20,
-    color: colors.teallight
+    color: colors.teallight,
   },
   optionItemText: {
     color: colors.black,
+    fontFamily: 'Poppins_400Regular',
+    fontSize: 16,
   }
 });
 

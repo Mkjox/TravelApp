@@ -53,10 +53,10 @@ function Explore() {
 
 const styles = StyleSheet.create({
     explore: {
-        lineHeight: 80,
+        marginVertical: 15,
         fontSize: 18,
         marginLeft: 20,
-        fontWeight: '700',
+        fontFamily: 'Poppins_600SemiBold'
     },
     exploreItem: {
         fontSize: 24,
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
         borderRadius: 15
     },
     pinnedPostTitle: {
-        fontWeight: '400',
+        fontFamily: 'Poppins_300Light',
         fontSize: 16,
         color: colors.white
     },
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     },
     pinnedPostLocationText: {
         marginLeft: 5,
-        fontWeight: '400',
+        fontFamily: 'Poppins_300Light',
         fontSize: 14,
         color: colors.white
     },

@@ -53,7 +53,7 @@ function Post() {
                                         />
                                         {item.place}
                                     </Text>
-                                    <Text>{item.body}</Text>
+                                    <Text style={styles.postContent}>{item.body}</Text>
                                 </Card.Content>
                             </Card>
                         </TouchableOpacity>
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     postInnerWrapper: {
-        marginBottom: 5,
+        marginBottom: 7,
     },
     postItemsWrapper: {
         paddingTop: 10,
@@ -82,34 +82,39 @@ const styles = StyleSheet.create({
     postItem: {
         width: 300,
         height: 120,
-        justifyContent: "flex-end",
         marginRight: 20,
         marginHorizontal: 10,
         marginVertical: 10,
     },
     postText: {
-        fontWeight: "400",
         fontSize: 16,
         color: "#FBFCFE",
         marginTop: 10,
         paddingBottom: 10,
+        fontFamily: 'Poppins_400Regular',
     },
     postItemTitle: {
-        marginBottom: 7.5,
         fontSize: 16,
         color: colors.black,
+        fontFamily: 'Poppins_400Regular',
     },
     postPlace: {
-        marginBottom: 7.5,
+        marginVertical: 5,
         color: colors.black,
+        fontFamily: 'Poppins_400Regular',
+
+    },
+    postContent: {
+        fontFamily: 'Poppins_300Light',
     },
     postItemImage: {
-        borderRadius: 20,
-        height: 200
+        height: 200,
+        overflow: 'hidden',
+        borderRadius: 10,
     },
     heart: {
         position: "absolute",
-        right: 15,
+        right: 11,
         bottom: 15,
         width: 44,
         height: 44,

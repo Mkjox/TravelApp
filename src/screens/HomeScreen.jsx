@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   activityTitle: {
     fontSize: 18,
     marginLeft: 20,
-    fontWeight: '700'
+    fontFamily: 'Poppins_600SemiBold'
   },
   activityCategories: {
     flexDirection: 'row',

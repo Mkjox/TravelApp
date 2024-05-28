@@ -21,6 +21,27 @@ import DonateScreen from "./src/screens/DonateScreen";
 import Post from "./src/components/Post";
 import Explore from "./src/components/Explore";
 import AddPostScreen from "./src/screens/AddPostScreen";
+import {
+  useFonts,
+  Poppins_100Thin,
+  Poppins_100Thin_Italic,
+  Poppins_200ExtraLight,
+  Poppins_200ExtraLight_Italic,
+  Poppins_300Light,
+  Poppins_300Light_Italic,
+  Poppins_400Regular,
+  Poppins_400Regular_Italic,
+  Poppins_500Medium,
+  Poppins_500Medium_Italic,
+  Poppins_600SemiBold,
+  Poppins_600SemiBold_Italic,
+  Poppins_700Bold,
+  Poppins_700Bold_Italic,
+  Poppins_800ExtraBold,
+  Poppins_800ExtraBold_Italic,
+  Poppins_900Black,
+  Poppins_900Black_Italic,
+} from "@expo-google-fonts/poppins";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -45,7 +66,7 @@ const TabNavigator = () => {
           headerShown: false,
         }}
       />
-      
+
       <Tab.Screen
         name="Liked"
         component={LikedScreen}
@@ -81,60 +102,80 @@ const TabNavigator = () => {
 // }
 
 const App = () => {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="TabNavigator"
-          component={TabNavigator}
-          options={styles.header}
-        />
+  let [fontsLoaded] = useFonts({
+    Poppins_100Thin,
+    Poppins_100Thin_Italic,
+    Poppins_200ExtraLight,
+    Poppins_200ExtraLight_Italic,
+    Poppins_300Light,
+    Poppins_300Light_Italic,
+    Poppins_400Regular,
+    Poppins_400Regular_Italic,
+    Poppins_500Medium,
+    Poppins_500Medium_Italic,
+    Poppins_600SemiBold,
+    Poppins_600SemiBold_Italic,
+    Poppins_700Bold,
+    Poppins_700Bold_Italic,
+    Poppins_800ExtraBold,
+    Poppins_800ExtraBold_Italic,
+    Poppins_900Black,
+    Poppins_900Black_Italic,
+  });
+    return (
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="TabNavigator"
+            component={TabNavigator}
+            options={styles.header}
+          />
 
-        {/* <Stack.Screen name="Sidebar" component={Sidebar} /> */}
+          {/* <Stack.Screen name="Sidebar" component={Sidebar} /> */}
 
-        <Stack.Screen
-          name="PostDetails"
-          component={PostDetails}
-          options={styles.header}
-        />
+          <Stack.Screen
+            name="PostDetails"
+            component={PostDetails}
+            options={styles.header}
+          />
 
-        <Stack.Screen
-          name="Appbar"
-          component={Appbar}
-          options={styles.header}
-        />
+          <Stack.Screen
+            name="Appbar"
+            component={Appbar}
+            options={styles.header}
+          />
 
-        <Stack.Screen
-          name="Settings"
-          component={SettingsScreen}
-          options={styles.header}
-        />
+          <Stack.Screen
+            name="Settings"
+            component={SettingsScreen}
+            options={styles.header}
+          />
 
-        <Stack.Screen
-          name="Donate"
-          component={DonateScreen}
-          options={styles.header}
-        />
+          <Stack.Screen
+            name="Donate"
+            component={DonateScreen}
+            options={styles.header}
+          />
 
-        <Stack.Screen
-          name="Post"
-          component={Post}
-          options={styles.header} />
+          <Stack.Screen
+            name="Post"
+            component={Post}
+            options={styles.header} />
 
-        <Stack.Screen
-          name="Explore"
-          component={Explore}
-          options={styles.header}
-        />
+          <Stack.Screen
+            name="Explore"
+            component={Explore}
+            options={styles.header}
+          />
 
-        <Stack.Screen
-          name="AddPost"
-          component={AddPostScreen}
-          options={styles.header}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+          <Stack.Screen
+            name="AddPost"
+            component={AddPostScreen}
+            options={styles.header}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
 };
 
 const styles = StyleSheet.create({

@@ -116,8 +116,8 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   itemTitle: {
-    fontWeight: "400",
-    fontSize: 24,
+    fontFamily: 'Poppins_300Light',
+    fontSize: 20,
     color: colors.white,
   },
   locationWrapper: {
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   locationText: {
-    fontWeight: "400",
+    fontFamily: 'Poppins_400Regular',
     fontSize: 16,
     color: colors.white,
   },
@@ -155,17 +155,17 @@ const styles = StyleSheet.create({
   },
   descriptionTitle: {
     fontWeight: "400",
-    fontSize: 24,
+    fontSize: 20,
     color: colors.black,
+    fontFamily: 'Poppins_300Light_Italic'
   },
   descriptionText: {
     marginTop: 20,
-    fontWeight: "normal",
-    fontSize: 16,
     color: colors.black,
     height: 'auto',
     marginBottom: 20,
-    textAlign: 'center'
+    textAlign: 'center',
+    fontFamily: 'Poppins_400Regular'
   },
   infoWrapper: {
     flexDirection: "row",
@@ -173,35 +173,37 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   infoTitle: {
-    fontWeight: "400",
     fontSize: 24,
     color: colors.orange,
   },
   infoTextWrapper: {
     flexDirection: 'row',
     alignItems: 'flex-end',
-    marginTop: 5
+    marginTop: 5,
   },
   infoText: {
     fontWeight: '400',
     fontSize: 24,
-    color: colors.orange
+    color: colors.orange,
+    fontFamily: 'Poppins_400Regular'
   },
   infoSubText: {
     fontWeight: "400",
     fontSize: 14,
     color: colors.darkGray,
+    fontFamily: 'Poppins_400Regular'
   },
   CommentsWrapper: {
     marginTop: 20,
-    marginHorizontal: 20
+    marginHorizontal: 20,
+    fontFamily: 'Poppins_400Regular'
   },
   CommentsInnerWrapper: {
 
   },
   CommentsTitle: {
-    fontWeight: '400',
-    fontSize: 24,
+    fontSize: 20,
+    fontFamily: 'Poppins_300Light_Italic'
     
   }
 });

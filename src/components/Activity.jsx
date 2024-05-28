@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     },
     activityText: {
         color: colors.darkGray,
-        fontWeight: '400'
+        fontFamily: 'Poppins_400Regular',
     },
     iconColor: {
         color: colors.teallight

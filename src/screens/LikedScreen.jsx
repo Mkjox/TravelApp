@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     marginTop: 16,
-    fontWeight: '600',
+    fontFamily: 'Poppins_500Medium',
     textAlign: 'center'
   },
   likedWrapper: {
