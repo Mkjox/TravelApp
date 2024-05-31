@@ -7,7 +7,7 @@ import { CardTitle } from "@rneui/base/dist/Card/Card.Title";
 import { Entypo, FontAwesome } from '@expo/vector-icons';
 import LikedData from '../assets/data/likedData.json';
 import colors from "../assets/colors/colors";
-
+import { ScrollView } from "react-native-gesture-handler";
 
 const ProfileScreen = () => {
   const [data, setData] = useState([]);
@@ -21,42 +21,62 @@ const ProfileScreen = () => {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.profileTopWrapper}>
-        <Avatar.Image size={70} style={styles.avatar} />
-        <Text style={styles.headerText}>Welcome</Text>
-        <Text style={[styles.headerText, { marginBottom: 5 }]}>@</Text>
-        <Entypo name="location-pin" size={18} color={'#F5F5F5'} style={styles.profileDetails}>
-          <Text style={styles.profileDetailsText}>Location</Text>
-        </Entypo>
-        <Entypo name="phone" size={18} color={'#F5F5F5'} style={styles.profileDetails}>
-          <Text style={styles.profileDetailsText}>Phone Number</Text>
-        </Entypo>
-        <Entypo name="mail" size={18} color={'#F5F5F5'} style={styles.profileDetails}>
-          <Text style={styles.profileDetailsText}>Email</Text>
-        </Entypo>
-      </View>
-      <View style={styles.countWrapper}>
-        <Text>Count</Text>
-        <Caption style={{ fontSize: 14 }}>Post Count</Caption>
-      </View>
-      <View style={styles.options}>
-        <FontAwesome name="heart" style={styles.optionItem} size={17}>
-          <Text style={styles.optionItemText}> Shared Posts</Text>
-        </FontAwesome>
-        <FontAwesome name="comment" style={styles.optionItem} size={17}>
-          <Text style={styles.optionItemText}> Comments</Text>
-        </FontAwesome>
-        <FontAwesome name="pencil" style={styles.optionItem} size={17}>
-          <Text style={styles.optionItemText}> Customize Profile</Text>
-        </FontAwesome>
-        <FontAwesome name="share" style={styles.optionItem} size={17}>
-          <Text style={styles.optionItemText}> Recommend the app to your friend</Text>
-        </FontAwesome>
-        <FontAwesome name="gear" style={styles.optionItem} size={17}>
-          <Text style={styles.optionItemText}> Settings</Text>
-        </FontAwesome>
-      </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <ScrollView style={styles.container}>
+        <View style={styles.profileTopWrapper}>
+          <Avatar.Image size={70} style={styles.avatar} />
+          <Text style={styles.headerText}>Welcome USER</Text>
+          <Text style={[styles.headerText, { marginBottom: 5 }]}>@</Text>
+          <Entypo name="location-pin" size={18} color={'#F5F5F5'} style={styles.profileDetails}>
+            <Text style={styles.profileDetailsText}>Location</Text>
+          </Entypo>
+          <Entypo name="phone" size={18} color={'#F5F5F5'} style={styles.profileDetails}>
+            <Text style={styles.profileDetailsText}>Phone Number</Text>
+          </Entypo>
+          <Entypo name="mail" size={18} color={'#F5F5F5'} style={styles.profileDetails}>
+            <Text style={styles.profileDetailsText}>Email</Text>
+          </Entypo>
+          {/* FIX STYLING ON THIS AREA  ALSO ADD DB DATA */}
+          <View style={styles.followContainer}>
+            <View style={styles.followerDetails}>
+              <Text style={styles.followerDetailsText}>0</Text>
+              <Text style={styles.followerDetailsText}>Followers</Text>
+            </View>
+            <View style={styles.followingDetails}>
+              <Text style={styles.followingDetailsText}>0</Text>
+              <Text style={styles.followingDetailsText}>Following</Text>
+            </View>
+          </View>
+        </View>
+        {/* ENTER DB DATA HERE */}
+        <View style={styles.countWrapper}>
+          <View style={styles.countContainer}>
+            <Text>4</Text>
+            <Caption style={{ fontSize: 14 }}>Post Count</Caption>
+          </View>
+          <View style={styles.countContainer}>
+            <Text>5</Text>
+            <Caption>Comment Count</Caption>
+          </View>
+        </View>
+        <View style={styles.options}>
+          <FontAwesome name="heart" style={styles.optionItem} size={17}>
+            <Text style={styles.optionItemText}> Shared Posts</Text>
+          </FontAwesome>
+          <FontAwesome name="comment" style={styles.optionItem} size={17}>
+            <Text style={styles.optionItemText}> Comments</Text>
+          </FontAwesome>
+          <FontAwesome name="pencil" style={styles.optionItem} size={17}>
+            <Text style={styles.optionItemText}> Customize Profile</Text>
+          </FontAwesome>
+          <FontAwesome name="share" style={styles.optionItem} size={17}>
+            <Text style={styles.optionItemText}> Recommend the app to your friend</Text>
+          </FontAwesome>
+          <FontAwesome name="gear" style={styles.optionItem} size={17}>
+            <Text style={styles.optionItemText}> Settings</Text>
+          </FontAwesome>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -69,7 +89,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.teallight,
     borderBottomEndRadius: 20,
     borderBottomLeftRadius: 20,
-    height: 300,
+    height: 370,
     shadowOpacity: 30,
   },
   avatar: {
@@ -92,14 +112,42 @@ const styles = StyleSheet.create({
   profileDetailsText: {
     fontFamily: 'Poppins_300Light',
   },
+  followContainer: {
+    marginTop: 10,
+    flexDirection: 'row',
+    marginHorizontal: 10,
+    alignContent: "space-between",
+    alignSelf: 'center'
+  },
+  followerDetails: {
+    marginRight: 50
+  },
+  followerDetailsText: {
+    fontFamily: 'Poppins_300Light',
+    fontSize: 14,
+    color: colors.white,
+    alignSelf: 'center'
+  },
+  followingDetails: {
+    marginLeft: 50
+  },
+  followingDetailsText: {
+    fontFamily: 'Poppins_300Light',
+    fontSize: 14,
+    color: colors.white,
+    alignSelf: 'center'
+  },
   countWrapper: {
     alignItems: 'center',
+    alignSelf: 'center',
     marginVertical: 10,
-    borderStyle: "dashed",
-    borderBottomWidth: 2,
-    borderBottomColor: colors.darkGray,
     height: 60,
-    marginBottom: 15
+    marginBottom: 15,
+    flexDirection: 'row'
+  },
+  countContainer: {
+    marginHorizontal: 50,
+    alignItems:'center'
   },
   options: {
     flexDirection: 'column',
