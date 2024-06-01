@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     height: 'auto',
     marginBottom: 20,
     textAlign: 'center',
-    fontFamily: 'Poppins_400Regular'
+    fontFamily: 'Poppins_400Regular',
   },
   infoWrapper: {
     flexDirection: "row",

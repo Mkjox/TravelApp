@@ -15,36 +15,29 @@ import { useNavigation } from '@react-navigation/core';
 function Activity() {
     return (
         <View style={styles.activityWrapper}>
-            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                 <TouchableOpacity style={styles.activityItem}>
-                    <MaterialCommunityIcons name="hiking" size={40} style={styles.iconColor} />
-                    <Text style={styles.activityText}>Hiking</Text>
+                    <Text style={[styles.activityText, {color: colors.teallight}]}>Hiking</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.activityItem}>
-                    <MaterialCommunityIcons name="bicycle" size={40} style={styles.iconColor} />
                     <Text style={styles.activityText}>Bicycle</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.activityItem}>
-                    <MaterialCommunityIcons name="car" size={40} style={styles.iconColor} />
                     <Text style={styles.activityText}>Drive</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.activityItem}>
-                    <MaterialCommunityIcons name="kayaking" size={40} style={styles.iconColor} />
                     <Text style={styles.activityText}>Kayak</Text>
                 </TouchableOpacity>
+                {/*
                 <TouchableOpacity style={styles.activityItem}>
-                    <MaterialCommunityIcons name="ski" size={40} style={styles.iconColor} />
                     <Text style={styles.activityText}>Ski</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.activityItem}>
-                    <MaterialCommunityIcons name="ski-water" size={40} style={styles.iconColor} />
                     <Text style={styles.activityText}>Water ski</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.activityItem}>
-                    <MaterialCommunityIcons name='swim' size={40} style={styles.iconColor} />
                     <Text style={styles.activityText}>Swim</Text>
                 </TouchableOpacity>
-            </ScrollView>
+                */}
         </View>
     );
 };
@@ -56,11 +49,12 @@ const styles = StyleSheet.create({
     activityItem: {
         marginVertical: 10,
         marginHorizontal: 15,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     activityText: {
         color: colors.darkGray,
-        fontFamily: 'Poppins_400Regular',
+        fontFamily: 'Poppins_500Medium',
+        fontSize: 16
     },
     iconColor: {
         color: colors.teallight

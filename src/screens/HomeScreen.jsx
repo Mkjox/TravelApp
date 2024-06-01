@@ -43,7 +43,7 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView nestedScrollEnabled={true} contentContainerStyle={{ flexGrow: 1 } }
+      <ScrollView nestedScrollEnabled={true} contentContainerStyle={{ flexGrow: 1 }}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
         <View style={styles.container}>
           <View style={styles.menuWrapper}>
@@ -61,12 +61,15 @@ const HomeScreen = ({ navigation }) => {
               mode="bar"
             />
           </View>
-          <View>
-            {/* Explore component called here */}
-            <Explore />
-          </View>
           <View style={styles.activityWrapper}>
-            <Text style={styles.activityTitle}>Activities</Text>
+            <View style={styles.activities}>
+              <View style={styles.activityInnerWrapper}>
+                <Text style={styles.activityTitle}>Categories</Text>
+              </View>
+              <View style={styles.activityInnerWrapper}>
+                <Text style={styles.activityAll}>See All &gt;</Text>
+              </View>
+            </View>
             <View style={styles.activityCategories}>
               {/* Activity component called here */}
               <Activity />
@@ -80,8 +83,8 @@ const HomeScreen = ({ navigation }) => {
         </View>
       </ScrollView>
       <TouchableOpacity style={styles.plusIcon} onPress={() => navigation.navigate("AddPost")}>
-            <Feather name="plus" size={36} color={colors.white}/>
-          </TouchableOpacity>
+        <Feather name="plus" size={36} color={colors.white} />
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -114,14 +117,25 @@ const styles = StyleSheet.create({
   },
   activityWrapper: {
   },
+  activities: {
+    alignItems: 'center',
+    alignSelf: 'center',
+    flexDirection: 'row'
+  },
+  activityInnerWrapper: {
+    marginHorizontal: 85
+  },
   activityTitle: {
     fontSize: 18,
-    marginLeft: 20,
     fontFamily: 'Poppins_600SemiBold'
+  },
+  activityAll: {
+    color: colors.teallight,
+    fontFamily: 'Poppins_500Medium'
   },
   activityCategories: {
     flexDirection: 'row',
-    marginHorizontal: 20,
+    marginHorizontal: 15,
   },
   plusIcon: {
     position: 'absolute',
@@ -141,7 +155,7 @@ const styles = StyleSheet.create({
       height: 2
     },
     shadowOpacity: 0.25,
-    shadowRadius:3.84,
+    shadowRadius: 3.84,
     elevation: 5,
   }
 });
