@@ -1,12 +1,15 @@
 import * as react from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/core";
 
-const SettingsScreen = ({ navigation }) => {
+const SettingsScreen = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <View style={styles.back}>
-        <TouchableOpacity onPress={navigation.goback()}>
+        <TouchableOpacity style={styles.back} onPress={() => navigation.goBack()}>
           <Ionicons name="arrow-back" size={24} color="black" />
         </TouchableOpacity>
       </View>

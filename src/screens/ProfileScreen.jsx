@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Linking, Platform, View, Text, ImageBackground } from "react-native";
+import { StyleSheet, Linking, Platform, View, Text, ImageBackground, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Avatar, Caption, Title, TouchableRipple } from "react-native-paper";
-import { CardTitle } from "@rneui/base/dist/Card/Card.Title";
 import { Entypo, FontAwesome } from '@expo/vector-icons';
 import LikedData from '../assets/data/likedData.json';
 import colors from "../assets/colors/colors";
@@ -11,6 +10,7 @@ import { ScrollView } from "react-native-gesture-handler";
 
 const ProfileScreen = () => {
   const [data, setData] = useState([]);
+  const navigation = useNavigation();
 
   useEffect(() => {
     try {
@@ -60,21 +60,35 @@ const ProfileScreen = () => {
           </View>
         </View>
         <View style={styles.options}>
-          <FontAwesome name="heart" style={styles.optionItem} size={17}>
-            <Text style={styles.optionItemText}> Shared Posts</Text>
-          </FontAwesome>
-          <FontAwesome name="comment" style={styles.optionItem} size={17}>
-            <Text style={styles.optionItemText}> Comments</Text>
-          </FontAwesome>
+          <TouchableOpacity onPress={() => navigation.navigate("SharedPosts")}>
+            <FontAwesome name="heart" style={styles.optionItem} size={17}>
+              <Text style={styles.optionItemText}> Shared Posts</Text>
+            </FontAwesome>
+          </TouchableOpacity>
+          
+          <TouchableOpacity onPress={() => navigation.navigate("Comments")}>
+            <FontAwesome name="comment" style={styles.optionItem} size={17}>
+              <Text style={styles.optionItemText}> Comments</Text>
+            </FontAwesome>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => navigation.navigate("CustomizeProfile")}>
           <FontAwesome name="pencil" style={styles.optionItem} size={17}>
             <Text style={styles.optionItemText}> Customize Profile</Text>
           </FontAwesome>
+          </TouchableOpacity>
+
+          <TouchableOpacity>
           <FontAwesome name="share" style={styles.optionItem} size={17}>
             <Text style={styles.optionItemText}> Recommend the app to your friend</Text>
           </FontAwesome>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
           <FontAwesome name="gear" style={styles.optionItem} size={17}>
             <Text style={styles.optionItemText}> Settings</Text>
           </FontAwesome>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -147,7 +161,7 @@ const styles = StyleSheet.create({
   },
   countContainer: {
     marginHorizontal: 50,
-    alignItems:'center'
+    alignItems: 'center'
   },
   options: {
     flexDirection: 'column',

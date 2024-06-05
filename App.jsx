@@ -42,6 +42,9 @@ import {
   Poppins_900Black,
   Poppins_900Black_Italic,
 } from "@expo-google-fonts/poppins";
+import SharedPostsScreen from "./src/screens/SharedPostsScreen";
+import CommentsSreen from "./src/screens/CommentsScreen";
+import CustomizeProfileScreen from "./src/screens/CustomizeProfileScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -122,60 +125,78 @@ const App = () => {
     Poppins_900Black,
     Poppins_900Black_Italic,
   });
-    return (
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="TabNavigator"
-            component={TabNavigator}
-            options={styles.header}
-          />
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="TabNavigator"
+          component={TabNavigator}
+          options={styles.header}
+        />
 
-          {/* <Stack.Screen name="Sidebar" component={Sidebar} /> */}
+        {/* <Stack.Screen name="Sidebar" component={Sidebar} /> */}
 
-          <Stack.Screen
-            name="PostDetails"
-            component={PostDetails}
-            options={styles.header}
-          />
+        <Stack.Screen
+          name="PostDetails"
+          component={PostDetails}
+          options={styles.header}
+        />
 
-          <Stack.Screen
-            name="Appbar"
-            component={Appbar}
-            options={styles.header}
-          />
+        <Stack.Screen
+          name="Appbar"
+          component={Appbar}
+          options={styles.header}
+        />
 
-          <Stack.Screen
-            name="Settings"
-            component={SettingsScreen}
-            options={styles.header}
-          />
+        <Stack.Screen
+          name="Settings"
+          component={SettingsScreen}
+          options={styles.header}
+        />
 
-          <Stack.Screen
-            name="Donate"
-            component={DonateScreen}
-            options={styles.header}
-          />
+        <Stack.Screen
+          name="Donate"
+          component={DonateScreen}
+          options={styles.header}
+        />
 
-          <Stack.Screen
-            name="Post"
-            component={Post}
-            options={styles.header} />
+        <Stack.Screen
+          name="Post"
+          component={Post}
+          options={styles.header} />
 
-          <Stack.Screen
-            name="Explore"
-            component={Explore}
-            options={styles.header}
-          />
+        <Stack.Screen
+          name="Explore"
+          component={Explore}
+          options={styles.header}
+        />
 
-          <Stack.Screen
-            name="AddPost"
-            component={AddPostScreen}
-            options={styles.header}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    );
+        <Stack.Screen
+          name="AddPost"
+          component={AddPostScreen}
+          options={styles.header}
+        />
+
+        <Stack.Screen
+          name="SharedPosts"
+          component={SharedPostsScreen}
+          options={styles.header}
+        />
+
+        <Stack.Screen
+          name="Comments"
+          component={CommentsSreen}
+          options={styles.header}
+        />
+
+        <Stack.Screen
+          name="CustomizeProfile"
+          component={CustomizeProfileScreen}
+          options={styles.header}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 };
 
 const styles = StyleSheet.create({
