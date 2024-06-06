@@ -1,5 +1,5 @@
 import * as react from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/core";
 
@@ -7,17 +7,19 @@ const SettingsScreen = () => {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
-      <View style={styles.back}>
-        <TouchableOpacity style={styles.back} onPress={() => navigation.goBack()}>
-          <Ionicons name="arrow-back" size={24} color="black" />
-        </TouchableOpacity>
+    <SafeAreaView>
+      <View style={styles.container}>
+        <View style={styles.back}>
+          <TouchableOpacity style={styles.back} onPress={() => navigation.goBack()}>
+            <Ionicons name="arrow-back" size={24} color="black" />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.text}>
+          <Text>- Settings Screen -</Text>
+          <Text>I will design this page later</Text>
+        </View>
       </View>
-      <View style={styles.text}>
-        <Text>- Settings Screen -</Text>
-        <Text>I will design this page later</Text>
-      </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

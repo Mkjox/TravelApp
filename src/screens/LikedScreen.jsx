@@ -79,6 +79,9 @@ const LikedScreen = () => {
           />
         </View>
       </View>
+      <TouchableOpacity style={styles.arrowUp}>
+        <MaterialIcons name='keyboard-arrow-up' size={36} color={colors.white} />
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -104,7 +107,7 @@ const styles = StyleSheet.create({
   searchBar: {
     width: 280,
     marginHorizontal: 5,
-    backgroundColor: '#f1f1f1'
+    backgroundColor: '#EEEEEE'
   },
   title: {
     fontSize: 16,
@@ -166,6 +169,27 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.black,
   },
+  arrowUp: {
+    position: 'absolute',
+    borderRadius: 60,
+    borderColor: colors.white,
+    borderStyle: 'solid',
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: 20,
+    bottom: 20,
+    width: 46,
+    height: 46,
+    backgroundColor: colors.teallight,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 2,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5
+  }
 });
 
 export default LikedScreen;
