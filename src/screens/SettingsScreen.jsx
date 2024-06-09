@@ -4,8 +4,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/core";
 import colors from "../assets/colors/colors";
 import LikedData from '../assets/data/likedData.json';
-import { Avatar } from "react-native-paper";
-import { Entypo } from '@expo/vector-icons';
+import { Avatar, List } from "react-native-paper";
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const SettingsScreen = () => {
   const [data, setData] = react.useState([]);
@@ -29,33 +29,40 @@ const SettingsScreen = () => {
           </TouchableOpacity>
         </View>
         <View style={styles.settingsWrapper}>
-          <View style={styles.iconWrapper}>
+          <View style={styles.listWrapper}>
             <TouchableOpacity>
-              <View style={styles.icon}>
-                <Entypo name="eye" size={22} />
-                <Text style={styles.iconText}>Dark Mode</Text>
-                <Entypo name="chevron-right" size={22} />
-              </View>
+              <List.Item
+                title="Dark Mode"
+                left={props => <List.Icon{...props} icon={() => <Icon name="dark-mode" size={24} />} />}
+                right={props => <List.Icon {...props} icon="chevron-right" />}
+              />
             </TouchableOpacity>
-            
+
             <TouchableOpacity>
-              <View style={styles.icon}>
-                <Entypo name="bell" size={22} />
-                <Text style={styles.iconText}>Notifications</Text>
-                <Entypo name="chevron-right" size={22} />
-              </View>
+              <List.Item
+                title="Notifications"
+                left={props => <List.Icon {...props} icon={() => <Icon name="notifications" size={24} />} />}
+                right={props => <List.Icon {...props} icon="chevron-right" />}
+              />
             </TouchableOpacity>
-            
+
             <TouchableOpacity>
-              <View style={styles.icon}>
-                <Entypo name="language" size={22} />
-                <Text style={styles.iconText}>Language</Text>
-                <Entypo name="chevron-right" size={22} />
-              </View>
+              <List.Item
+                title="Language"
+                left={props => <List.Icon {...props} icon={() => <Icon name="language" size={24} />} />}
+                right={props => <List.Icon {...props} icon="chevron-right" />}
+              />
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+              <List.Item
+                title="Privacy"
+                left={props => <List.Icon {...props} icon={() => <Icon name="privacy-tip" size={24} />} />}
+                right={props => <List.Icon {...props} icon="chevron-right" />}
+              />
             </TouchableOpacity>
           </View>
         </View>
-        <Avatar.Image size={70} style={styles.avatar} />
       </View>
     </SafeAreaView>
   );
@@ -79,31 +86,16 @@ const styles = StyleSheet.create({
   },
   settingsWrapper: {
     alignItems: "center",
-    alignContent: 'center',
-    alignSelf: 'center',
-    backgroundColor: '#FFFFFF',
-    height: 500,
-    width: 300,
-    top: 80,
-    borderRadius: 15,
+    padding: 20,
+    marginTop: 80
   },
-  avatar: {
-    position: 'absolute',
-    left: 150,
-    top: 120,
+  listWrapper: {
+    marginTop: 50,
+    backgroundColor: '#fff',
+    margin: 20,
+    borderRadius: 10,
+    padding: 25,
+    elevation: 2
   },
-  iconWrapper: {
-    marginTop: 150
-  },
-  icon: {
-    marginVertical: 5,
-    flexDirection: 'row'
-  },
-  iconText: {
-    fontSize: 20,
-    marginLeft: 15,
-    marginRight: 10,
-    fontFamily: 'Poppins_400Regular'
-  }
 });
 export default SettingsScreen;
