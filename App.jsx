@@ -45,6 +45,9 @@ import {
 import SharedPostsScreen from "./src/screens/SharedPostsScreen";
 import CommentsSreen from "./src/screens/CommentsScreen";
 import CustomizeProfileScreen from "./src/screens/CustomizeProfileScreen";
+import NotificationsScreen from "./src/screens/subScreens/NotificationsScreen";
+import PrivacyScreen from "./src/screens/subScreens/PrivacyScreen";
+import LanguageScreen from "./src/screens/subScreens/LanguageScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -194,6 +197,25 @@ const App = () => {
           component={CustomizeProfileScreen}
           options={styles.header}
         />
+
+        <Stack.Screen
+          name="Notifications"
+          component={NotificationsScreen}
+          options={styles.header}
+        />
+
+        <Stack.Screen 
+          name="Language"
+          component={LanguageScreen}
+          options={styles.header}
+        />
+
+        <Stack.Screen
+          name="Privacy"
+          component={PrivacyScreen}
+          options={styles.header}
+        />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

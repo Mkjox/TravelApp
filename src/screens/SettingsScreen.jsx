@@ -38,7 +38,7 @@ const SettingsScreen = () => {
               />
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Notifications")}>
               <List.Item
                 title="Notifications"
                 left={props => <List.Icon {...props} icon={() => <Icon name="notifications" size={24} />} />}
@@ -46,7 +46,7 @@ const SettingsScreen = () => {
               />
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Language")}>
               <List.Item
                 title="Language"
                 left={props => <List.Icon {...props} icon={() => <Icon name="language" size={24} />} />}
@@ -54,7 +54,7 @@ const SettingsScreen = () => {
               />
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Privacy")}>
               <List.Item
                 title="Privacy"
                 left={props => <List.Icon {...props} icon={() => <Icon name="privacy-tip" size={24} />} />}
