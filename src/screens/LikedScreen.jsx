@@ -59,6 +59,9 @@ const LikedScreen = () => {
               <TouchableOpacity onPress={() => navigation.navigate("PostDetails", { item: item })}>
                 <Card style={styles.likedItemWrapper}>
                   <ImageBackground src={item.image} style={styles.likedItemImage}>
+                    <TouchableOpacity style={styles.moreButton}>
+                      <Entypo name='dots-three-vertical' size={18} colors={colors.white} />
+                    </TouchableOpacity>
                     <TouchableOpacity onPress={toggleHeart} style={styles.heart}>
                       <Entypo name={heart} size={28} color={colors.orange} />
                     </TouchableOpacity>
@@ -131,6 +134,20 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     justifyContent: 'flex-end',
     borderRadius: 10,
+  },
+  moreButton: {
+    position: 'absolute',
+    right: 6,
+    top: 10,
+    width: 15,
+    height: 15,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    elevation: 5
   },
   heart: {
     position: "absolute",
