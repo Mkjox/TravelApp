@@ -1,17 +1,19 @@
-import * as react from "react";
-import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from "react-native";
+import { useEffect, useState } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, Switch } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/core";
 import colors from "../assets/colors/colors";
 import LikedData from '../assets/data/likedData.json';
-import { Avatar, List } from "react-native-paper";
+import { List } from "react-native-paper";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const SettingsScreen = () => {
-  const [data, setData] = react.useState([]);
+  const [data, setData] = useState([]);
   const navigation = useNavigation();
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
-  react.useEffect(() => {
+  useEffect(() => {
     try {
       setData(LikedData);
     } catch (error) {
@@ -30,13 +32,20 @@ const SettingsScreen = () => {
         </View>
         <View style={styles.settingsWrapper}>
           <View style={styles.listWrapper}>
-            <TouchableOpacity>
-              <List.Item
-                title="Dark Mode"
-                left={props => <List.Icon{...props} icon={() => <Icon name="dark-mode" size={24} />} />}
-                right={props => <List.Icon {...props} icon="chevron-right" />}
+            <List.Accordion
+              title="Dark Mode"
+              left={props => <List.Icon {...props} icon={() => <Icon name="dark-mode" size={24} />} />}
+              right={props => <List.Icon {...props} icon="chevron-right" />}
+            >
+              <List.Item title="Enabled"  style={styles.switch}
+                right={props => <Switch
+                  trackColor={{ false: '#767577', true: '#81b0ff' }}
+                  thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+                  onValueChange={toggleSwitch}
+                  value={isEnabled}
+                />}
               />
-            </TouchableOpacity>
+            </List.Accordion>
 
             <TouchableOpacity onPress={() => navigation.navigate("Notifications")}>
               <List.Item
@@ -97,5 +106,8 @@ const styles = StyleSheet.create({
     padding: 25,
     elevation: 2
   },
+  switch: {
+    marginLeft: 15
+  }
 });
 export default SettingsScreen;
